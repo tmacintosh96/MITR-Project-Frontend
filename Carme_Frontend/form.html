@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+		<link rel="stylesheet" type="text/css" href="CSS/main.css">
+
+	</head>
+
+
+	<!-- navbar -->  
+	 <nav class="navbar navbar-expand-lg fixed-top ">  
+	 <a class="navbar-brand" href="dashboard.html" class="navbar-left"><img src="Resources/Logo.png" width="180"; height="90px"></a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">  
+	 <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse " id="navbarSupportedContent"> <ul class="navbar-nav mr-4">
+	 <li class="nav-item">
+	     <a class="nav-link" data-value="home" href="https://carme.ai/">Home</a></li>  
+	<li class="nav-item">
+	    <a class="nav-link " data-value="dashboard" href="dashboard.html">Dashboard</a></li>
+	 <li class="nav-item"> 
+	    <a class="nav-link " data-value="docs" href="https://docs.carme.ai/">Docs</a></li>   
+	<li class="nav-item">  
+	   <a class="nav-link " data-value="tutorials" href="https://carme.ai/blog/">Tutorials</a></li>  
+	<li class="nav-item"> 
+	 <a class="nav-link " data-value="join" href="https://carmelabs.slack.com/join/shared_invite/enQtNDAxMDE2MjU0NzA5LTJmMGVlM2I5Zjc4Yzk2NzhjYTRlMWVhMTZlMTYzMGMyNmM0NzE1ZTMwZWFjZGUxNGRkMTc2ZjJjNTVlYThkMTQ">Join Slack</a></li>
+	<li class="nav-item"> 
+	 <a class="nav-link " data-value="get" href="https://carme.ai/contact/">Get the Paper</a></li>
+	 <a href="#"><img src="Resources/user_icon.jpeg" width="50px"; height="50px";></a>
+	</ul> 
+	</div></nav>
+
+	<div class="help">
+		<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
+	</div>
+	<div class="text-center">
+	<div class="btn-group btn-group-lg" role="group" aria-label="form-buttons">
+		<button type="button" class="form-btn">Kubernetes Cluster + Jupyter Server</button>
+		<button type="button" class="form-btn">GPU + Jupyter Server</button>
+	</div></div>
+	<div class="form-wrapper">
+		<div class="cluster-form">
+			<h2 class="form-header">Google Cluster Configuration</h2>
+			<form>
+ 				<p class="form-text">Project Name:</p><input name="cluster-project-name" type="text">
+ 				<br></br>  
+ 				<p class="form-text">Google Email:</p><input name="cluster-email" type="text">
+ 				<br></br>  
+ 				<p class="form-text">Cluster Name:</p><input name="cluster-name" type="text">
+ 				<br></br>   
+ 				<p class="form-text">Region:</p><select name="cluster-region">
+				    <option value="asia-east1">asia-east1</option>
+				    <option value="asia-east2">asia-east2</option>
+				    <option value="asia-northeast1">asia-northeast1</option>
+				    <option value="asia-south1">asia-south1</option>
+				    <option value="asia-southeast1">asia-southeast1</option>
+				    <option value="australia-southeast1">australia-southeast1</option>
+				    <option value="europe-north1">europe-north1</option>
+				    <option value="europe-west1">europe-west1</option>
+				    <option value="europe-west2">europe-west2</option>
+				    <option value="europe-west3">europe-west3</option>
+				    <option value="europe-west4">europe-west4</option>
+				    <option value="northamerica-northeast1">northamerica-northeast1</option>
+				    <option value="southamerica-east1">southamerica-east1</option>
+				    <option value="us-central1">us-central1</option>
+				    <option value="us-east1">us-east1</option>
+				    <option value="us-east4">us-east4</option>
+				    <option value="us-west1">us-west1</option>
+				    <option value="us-west2">us-west2</option>
+				  </select>
+				<p class="form-text">Zone:</p><select name="cluster-zone">
+				    <option value="asia-east1-a">asia-east1-a</option>
+				    <option value="asia-east1-b">asia-east1-b</option>
+				    <option value="asia-east1-c">asia-east1-c</option>
+
+				    <option value="asia-east2-a">asia-east2-a</option>
+				    <option value="asia-east2-b">asia-east2-b</option>
+				    <option value="asia-east2-c">asia-east2-c</option>
+
+				    <option value="asia-northeast1-a">asia-northeast1-a</option>
+				    <option value="asia-northeast1-b">asia-northeast1-b</option>
+				    <option value="asia-northeast1-c">asia-northeast1-c</option>
+
+				    <option value="asia-south1-a">asia-south1-a</option>
+				    <option value="asia-south1-b">asia-south1-b</option>
+				    <option value="asia-south1-c">asia-south1-c</option>
+
+				    <option value="asia-southeast1-a">asia-southeast1-a</option>
+				    <option value="asia-southeast1-b">asia-southeast1-b</option>
+				    <option value="asia-southeast1-c">asia-southeast1-c</option>
+
+				    <option value="australia-southeast1-a">australia-southeast1-a</option>
+				    <option value="australia-southeast1-b">australia-southeast1-b</option>
+				    <option value="australia-southeast1-c">australia-southeast1-c</option>
+
+				    <option value="europe-north1-a">europe-north1-a</option>
+				    <option value="europe-north1-b">europe-north1-b</option>
+				    <option value="europe-north1-c">europe-north1-c</option>
+
+				    <option value="europe-west1-b">europe-west1-b</option>
+				    <option value="europe-west1-c">europe-west1-c</option>
+				    <option value="europe-west1-d">europe-west1-d</option>
+
+				    <option value="europe-west2-a">europe-west2-a</option>
+				    <option value="europe-west2-b">europe-west2-b</option>
+				    <option value="europe-west2-c">europe-west2-c</option>
+
+				    <option value="europe-west3-a">europe-west3-a</option>
+				    <option value="europe-west3-b">europe-west3-b</option>
+				    <option value="europe-west3-c">europe-west3-c</option>
+
+				    <option value="europe-west4-a">europe-west4-a</option>
+				    <option value="europe-west4-b">europe-west4-b</option>
+				    <option value="europe-west4-c">europe-west4-c</option>
+
+				    <option value="northamerica-northeast1-a">northamerica-northeast1-a</option>
+				    <option value="northamerica-northeast1-b">northamerica-northeast1-b</option>
+				    <option value="northamerica-northeast1-c">northamerica-northeast1-c</option>
+
+				    <option value="southamerica-east1-a">southamerica-east1-a</option>
+				    <option value="southamerica-east1-b">southamerica-east1-b</option>
+				    <option value="southamerica-east1-c">southamerica-east1-c</option>
+
+				    <option value="us-central1-a">us-central1-a</option>
+				    <option value="us-central1-b">us-central1-b</option>
+				    <option value="us-central1-c">us-central1-c</option>
+				    <option value="us-central1-f">us-central1-f</option>
+
+				    <option value="us-east1-b">us-east1-b</option>
+				    <option value="us-east1-c">us-east1-c</option>
+				    <option value="us-east1-d">us-east1-d</option>
+
+				    <option value="us-east4-a">us-east4-a</option>
+				    <option value="us-east4-b">us-east4-b</option>
+				    <option value="us-east4-c">us-east4-c</option>
+
+				    <option value="us-west1-a">us-west1-a</option>
+				    <option value="us-west1-b">us-west1-b</option>
+				    <option value="us-west1-c">us-west1-c</option>
+
+				    <option value="us-west2-a">us-west2-a</option>
+				    <option value="us-west2-b">us-west2-b</option>
+				    <option value="us-west2-c">us-west2-c</option>
+
+				  </select>
+				<br></br>
+				<p class="form-text">Machine Type:</p>
+				<!-- Material inline 1 -->
+				<div class="form-check form-check-inline">
+				  <input type="radio" class="form-check-input" id="cluster-radio-standard" name="inlineMaterialRadiosExample">
+				  <label class="form-check-label" for="materialInline1">n1-standard-2</label>
+				</div>
+
+				<!-- Material inline 2 -->
+				<div class="form-check form-check-inline">
+				  <input type="radio" class="form-check-input" id="cluster-radio-highmem" name="inlineMaterialRadiosExample">
+				  <label class="form-check-label" for="materialInline2">n1-highmem-4</label>
+				</div>
+
+				<br></br>
+				<p class="form-text">Authorization Form:</p><input name="cluster-authorization" type="text">
+ 				<br></br>
+ 				<p class="form-text">Service Account Name:</p><input name="cluster-service-account" type="text">
+ 				<br></br>
+ 				<p class="form-text">FixeIP Namespace:</p><input name="cluster-fixedip" type="text">
+ 				<br></br>
+ 				<p class="form-text">Number of Nodes:</p><input name="cluster-nodes" type="text">
+ 				<br></br>
+ 				<p class="form-text">Number of Nodes(Classes):</p><input name="cluster-class" type="text">
+ 				<br></br>
+ 				<p class="form-text">Max Number of Nodes:</p><input name="cluster-max" type="text">
+ 				<br></br>
+				<button type="button" class="form-btn">Submit</button>
+			</form>
+
+
+		</div>
+		<div class="gpu-form">
+		<h2 class="form-header">Google Specific Configuration</h2>
+			<form>
+ 				<p class="form-text">Project Name:</p><input name="gpu-project-name" type="text">
+ 				<br></br>  
+ 				<p class="form-text">Server Name:</p><input name="gpu-server-name" type="text">
+ 				<br></br>  
+ 				<p class="form-text">Region:</p><select name="gpu-region">
+				    <option value="asia-east1">asia-east1</option>
+				    <option value="asia-east2">asia-east2</option>
+				    <option value="asia-northeast1">asia-northeast1</option>
+				    <option value="asia-south1">asia-south1</option>
+				    <option value="asia-southeast1">asia-southeast1</option>
+				    <option value="australia-southeast1">australia-southeast1</option>
+				    <option value="europe-north1">europe-north1</option>
+				    <option value="europe-west1">europe-west1</option>
+				    <option value="europe-west2">europe-west2</option>
+				    <option value="europe-west3">europe-west3</option>
+				    <option value="europe-west4">europe-west4</option>
+				    <option value="northamerica-northeast1">northamerica-northeast1</option>
+				    <option value="southamerica-east1">southamerica-east1</option>
+				    <option value="us-central1">us-central1</option>
+				    <option value="us-east1">us-east1</option>
+				    <option value="us-east4">us-east4</option>
+				    <option value="us-west1">us-west1</option>
+				    <option value="us-west2">us-west2</option>
+				  </select>
+				<p class="form-text">Zone:</p><select name="gpu-zone">
+				    <option value="asia-east1-a">asia-east1-a</option>
+				    <option value="asia-east1-b">asia-east1-b</option>
+				    <option value="asia-east1-c">asia-east1-c</option>
+
+				    <option value="asia-east2-a">asia-east2-a</option>
+				    <option value="asia-east2-b">asia-east2-b</option>
+				    <option value="asia-east2-c">asia-east2-c</option>
+
+				    <option value="asia-northeast1-a">asia-northeast1-a</option>
+				    <option value="asia-northeast1-b">asia-northeast1-b</option>
+				    <option value="asia-northeast1-c">asia-northeast1-c</option>
+
+				    <option value="asia-south1-a">asia-south1-a</option>
+				    <option value="asia-south1-b">asia-south1-b</option>
+				    <option value="asia-south1-c">asia-south1-c</option>
+
+				    <option value="asia-southeast1-a">asia-southeast1-a</option>
+				    <option value="asia-southeast1-b">asia-southeast1-b</option>
+				    <option value="asia-southeast1-c">asia-southeast1-c</option>
+
+				    <option value="australia-southeast1-a">australia-southeast1-a</option>
+				    <option value="australia-southeast1-b">australia-southeast1-b</option>
+				    <option value="australia-southeast1-c">australia-southeast1-c</option>
+
+				    <option value="europe-north1-a">europe-north1-a</option>
+				    <option value="europe-north1-b">europe-north1-b</option>
+				    <option value="europe-north1-c">europe-north1-c</option>
+
+				    <option value="europe-west1-b">europe-west1-b</option>
+				    <option value="europe-west1-c">europe-west1-c</option>
+				    <option value="europe-west1-d">europe-west1-d</option>
+
+				    <option value="europe-west2-a">europe-west2-a</option>
+				    <option value="europe-west2-b">europe-west2-b</option>
+				    <option value="europe-west2-c">europe-west2-c</option>
+
+				    <option value="europe-west3-a">europe-west3-a</option>
+				    <option value="europe-west3-b">europe-west3-b</option>
+				    <option value="europe-west3-c">europe-west3-c</option>
+
+				    <option value="europe-west4-a">europe-west4-a</option>
+				    <option value="europe-west4-b">europe-west4-b</option>
+				    <option value="europe-west4-c">europe-west4-c</option>
+
+				    <option value="northamerica-northeast1-a">northamerica-northeast1-a</option>
+				    <option value="northamerica-northeast1-b">northamerica-northeast1-b</option>
+				    <option value="northamerica-northeast1-c">northamerica-northeast1-c</option>
+
+				    <option value="southamerica-east1-a">southamerica-east1-a</option>
+				    <option value="southamerica-east1-b">southamerica-east1-b</option>
+				    <option value="southamerica-east1-c">southamerica-east1-c</option>
+
+				    <option value="us-central1-a">us-central1-a</option>
+				    <option value="us-central1-b">us-central1-b</option>
+				    <option value="us-central1-c">us-central1-c</option>
+				    <option value="us-central1-f">us-central1-f</option>
+
+				    <option value="us-east1-b">us-east1-b</option>
+				    <option value="us-east1-c">us-east1-c</option>
+				    <option value="us-east1-d">us-east1-d</option>
+
+				    <option value="us-east4-a">us-east4-a</option>
+				    <option value="us-east4-b">us-east4-b</option>
+				    <option value="us-east4-c">us-east4-c</option>
+
+				    <option value="us-west1-a">us-west1-a</option>
+				    <option value="us-west1-b">us-west1-b</option>
+				    <option value="us-west1-c">us-west1-c</option>
+
+				    <option value="us-west2-a">us-west2-a</option>
+				    <option value="us-west2-b">us-west2-b</option>
+				    <option value="us-west2-c">us-west2-c</option>
+
+				  </select>
+				<br></br>
+				<p class="form-text">Machine Type:</p>
+				<!-- Material inline 1 -->
+				<div class="form-check form-check-inline">
+				  <input type="radio" class="form-check-input" id="gpu-radio-standard" name="inlineMaterialRadiosExample">
+				  <label class="form-check-label" for="materialInline1">n1-standard-2</label>
+				</div>
+
+				<!-- Material inline 2 -->
+				<div class="form-check form-check-inline">
+				  <input type="radio" class="form-check-input" id="gpu-radio-highmem" name="inlineMaterialRadiosExample">
+				  <label class="form-check-label" for="materialInline2">n1-highmem-4</label>
+				</div>
+				<br></br>
+				<p class="form-text">Authorization Form:</p><input name="gpu-authorization" type="text">
+ 				<br></br>
+ 				<p class="form-text">Boot Size:</p><input name="gpu-boot" type="text">
+ 				<br></br>
+ 				<p class="form-text">Service Account Name:</p><input name="gpu-service-account" type="text">
+ 				<br></br>
+ 				<p class="form-text">FixeIP Namespace:</p><input name="gpu-fixedip" type="text">
+ 				<br></br>
+				<p class="form-text">Accelorator:</p>
+				<!-- Material inline 1 -->
+				<div class="form-check form-check-inline">
+				  <input type="radio" class="form-check-input" id="gpu-radio-p100" name="inlineMaterialRadiosExample">
+				  <label class="form-check-label" for="materialInline1">nvidia-tesla-p100</label>
+				</div>
+
+				<!-- Material inline 2 -->
+				<div class="form-check form-check-inline">
+				  <input type="radio" class="form-check-input" id="gpu-radio-k80" name="inlineMaterialRadiosExample">
+				  <label class="form-check-label" for="materialInline2">nvidia-tesla-k80</label>
+				</div>
+				<br></br>
+
+ 				<p class="form-text">Image Family:</p><input name="gpu-image-family" type="text">
+ 				<br></br>
+ 				<p class="form-text">Image Project:</p><input name="gpu-image-project" type="text">
+ 				<br></br>
+ 				<p class="form-text">GPU Count:</p><input name="gpu-count" type="text">
+ 				<br></br>
+ 				<p class="form-text">IP Range:</p><input name="gpu-ip-range" type="text">
+ 				<br></br>
+				<button type="button" class="form-btn">Submit</button>
+		</div>
+	</div>
+	<!--<div class="row"> 
+		<div class="col-lg-4 col-md-4 col-sm-12">
+			<div class="form-buttons">
+    			<div class="btn-group-vertical">
+			  		<button type="button" class="form-btn">Select Platform/Type</button>
+			  		<button type="button" class="form-btn">Specs</button>
+			  		<button type="button" class="form-btn">Specs Cont.</button>
+			  		<button type="button" class="form-btn">Review</button>
+				</div>
+			</div>
+ 		</div>
+ 		<div class="col-lg-7 col-md-7 col-sm-12 desc">
+     		<div class="form-container">
+     			<div class="form-select">
+     				<div class="help">
+						<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
+					</div>
+					<form>
+					    <ul class="radio-btns">
+					      <li><input type="radio" name="opinions" id="radio-1" /> <label
+					        for="radio-1">Kubernetes Cluster + Jupyter Server</label></li>
+					      <li><input type="radio" name="opinions" id="radio-2" /> <label
+					        for="radio-2">GPU + Jupyter Server</label></li>
+					    </ul>
+					</form>
+
+
+     			</div>
+     			<div class="form-specs-cluster">
+					<div class="help">
+						<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
+					</div>
+
+
+
+
+
+
+     			</div>
+     			<div class="form-specs-gpu">
+					<div class="help">
+						<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
+					</div>
+
+
+
+
+
+
+     			</div>
+     			<div class="form-specs-cont-cluster">
+     				<div class="help">
+						<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
+					</div>
+
+
+
+
+     			</div>
+     			<div class="form-specs-cont-gpu">
+     				<div class="help">
+						<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
+					</div>
+
+
+
+
+
+     			</div>
+     			<div class="form-review-cluster">
+     				<div class="help">
+						<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
+					</div>
+
+
+
+
+
+     			</div>
+     			<div class="form-review-gpu">
+     				<div class="help">
+						<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
+					</div>
+
+
+
+
+
+     			</div>
+		    </div>
+		</div>
+	</div>
+--->
+
+
+
+
+
+
+	<footer class="footer">
+		<div class="footer-buttons">
+			<ul class="footer-li">
+				<li class="footer-item">
+					<a class="nav-link" data-value="about" href="https://carme.ai/">About Us</a></li>
+				<li class="footer-item">
+					<a class="nav-link" data-value="contact" href="https://carme.ai/contact/">Contact Us</a></li>
+				<li class="footer-item">
+					<a class="nav-link" data-value="how" href="#">How it works</a></li>
+				<li class="footer-item">
+					<a class="nav-link" data-value="tutorials-footer" href="https://carme.ai/blog/">Tutorials</a></li>
+				<li class="footer-item">
+					<a class="nav-link" data-value="terms" href="#">Terms</a></li>
+			</ul>
+		</div>
+	</footer>
+</html>
