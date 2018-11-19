@@ -6,6 +6,10 @@ Notes: User and help icons are placeholders. Will replace in future.
 	   Get help button with popup user modal working
 	   Make form shrink dynamically with window
 	   Get form to match mockup (had to change the design to get working in a timely manner for testing)
+	   
+	  
+	  
+Need to organize and doucment code!
 
 CSS Color Info:
 
