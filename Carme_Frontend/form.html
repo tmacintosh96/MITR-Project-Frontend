@@ -43,18 +43,20 @@
 		        </div>
 		        <div class="modal-body">
 		          	Here you have the option to select either the Kubernetes Cluster or the GPU. To navigate this form, you first make your selection, then click on the buttons to the left to travel through the form. 
-		          	<br><br>
+		          	<br>
 		          	If you want to stop filling out the Cluster Form or vice versa, just go back to the selection tab and select the other option. It will clear your old form and allow you to navigate your desired form. 
-		          	<br><br>
+		          	<br>
 		          	After making sure to fill out all of the input fields, you will be able to then submit the form at the review page, which shows what you have inputted.
-		          	<br><br>
+		          	<br>
 		          	Here are some quick explanations as to what certain parts of the forms refer to:
 		          	<br><br>
-		          	Region and Zone: Selected from the gcloud regions list
+		          	Type of Server (Machine Type): https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-sizes-specs
+		          	<br>
+		          	Location: Selection from az account list-locations
 		          	<br>
 		          	Machine Type: Type of Server (n1-standard-2 for cheap alternative/ otherwise go for n1-highmem-4)
 		          	<br>
-		          	Authorization File: Service account authorization (i.e. auth.json)
+		          	Storage Account, Container Name, Storage Name, and Storage Name: For use with Pachyderm
 		          	<br>
 		          	Number of Nodes: Default number of nodes
 		          	<br>
@@ -371,144 +373,156 @@
 	     			</div>
 	     			<form>
 	     			<div class="form-specs-cluster" id="clus-specs">
-						<h2 class="form-header">Google Cluster Configuration</h2>
+						<h2 class="form-header">Azure Cluster Configuration</h2>
 						<br><br>
-		 				<p class="form-text">Project Name:</p><input name="cluster-project-name" id="cprojname" type="text">
+		 				<p class="form-text">Subscription:</p><input name="cluster-subscription" id="csubscrib" type="text">
 		 				<br><br>
-		 				<p class="form-text">Google Email:</p><input name="cluster-email" id="cemail" type="text">
+		 				<p class="form-text">Resource Group:</p><input name="cluster-resource-group" id="cgroup" type="text">
 		 				<br><br>
 		 				<p class="form-text">Cluster Name:</p><input name="cluster-name" id="cname" type="text">
 		 				<br><br>
-		 				<p class="form-text">Region:</p><select name="cluster-region" id="cregion">
-							<option value="asia-east1">asia-east1</option>
-							<option value="asia-east2">asia-east2</option>
-							<option value="asia-northeast1">asia-northeast1</option>
-							<option value="asia-south1">asia-south1</option>
-							<option value="asia-southeast1">asia-southeast1</option>
-							<option value="australia-southeast1">australia-southeast1</option>
-							<option value="europe-north1">europe-north1</option>
-							<option value="europe-west1">europe-west1</option>
-							<option value="europe-west2">europe-west2</option>
-							<option value="europe-west3">europe-west3</option>
-							<option value="europe-west4">europe-west4</option>
-							<option value="northamerica-northeast1">northamerica-northeast1</option>
-							<option value="southamerica-east1">southamerica-east1</option>
-							<option value="us-central1">us-central1</option>
-							<option value="us-east1">us-east1</option>
-							<option value="us-east4">us-east4</option>
-							<option value="us-west1">us-west1</option>
-						    <option value="us-west2">us-west2</option>
+		 				<p class="form-text">Location:</p><select name="cluster-location" id="clocation">
+							<option value="us-central">us-central</option>
+							<option value="us-east">us-east</option>
+							<option value="us-east2">us-east2</option>
+							<option value="us-north-central">us-north-central</option>
+							<option value="us-south-central">us-south-central</option>
+							<option value="us-west-central">us-west-central</option>
+							<option value="us-west">us-west</option>
+							<option value="us-west2">us-west2</option>
+							<option value="europe-north">europe-north</option>
+							<option value="europe-west">europe-west</option>
+							<option value="asia-pacific-east">asia-pacific-east</option>
+							<option value="asia-pacific-southeast">asia-pacific-southeast</option>
+							<option value="japan-east">japan-east</option>
+							<option value="japan-west">japan-west</option>
+							<option value="brazil-south">brazil-south</option>
+							<option value="australia-central">australia-central</option>
+							<option value="australia-central2">australia-central2</option>
+						    <option value="australia-east">australia-east</option>
+						    <option value="australia-southeast">australia-southeast</option>
+							<option value="central-india">central-india</option>
+						    <option value="south-india">south-india</option>
+						    <option value="west-india">west-india</option>
+							<option value="canada-central">canada-central</option>
+						    <option value="canada-east">canada-east</option>
+						    <option value="germany-central">germany-central</option>
+							<option value="germany-northeast">germany-northeast</option>
+						    <option value="united-kingdom-south">united-kingdom-south</option>
+						    <option value="united-kingdom-west">united-kingdom-west</option>
+							<option value="france-central">france-central</option>
+						    <option value="france-south">france-south</option>
+						    <option value="korea-central">korea-central</option>
+							<option value="korea-south">korea-south</option>
+						    <option value="us-dod-central">us-dod-central</option>
+						    <option value="us-dod-east">us-dod-east</option>
+						    <option value="us-gov-iowa">us-gov-iowa</option>
+						    <option value="us-gov-texas">us-gov-texas</option>
+						    <option value="us-gov-virginia">us-gov-virginia</option>
 						</select>
-						<p class="form-text">Zone:</p><select name="cluster-zone" id="czone">
-						    <option value="asia-east1-a">asia-east1-a</option>
-						    <option value="asia-east1-b">asia-east1-b</option>
-						    <option value="asia-east1-c">asia-east1-c</option>
-						    <option value="asia-east2-a">asia-east2-a</option>
-						    <option value="asia-east2-b">asia-east2-b</option>
-						    <option value="asia-east2-c">asia-east2-c</option>
-						    <option value="asia-northeast1-a">asia-northeast1-a</option>
-						    <option value="asia-northeast1-b">asia-northeast1-b</option>
-						    <option value="asia-northeast1-c">asia-northeast1-c</option>
-						    <option value="asia-south1-a">asia-south1-a</option>
-						    <option value="asia-south1-b">asia-south1-b</option>
-						    <option value="asia-south1-c">asia-south1-c</option>
-						    <option value="asia-southeast1-a">asia-southeast1-a</option>
-						    <option value="asia-southeast1-b">asia-southeast1-b</option>
-						    <option value="asia-southeast1-c">asia-southeast1-c</option>
-						    <option value="australia-southeast1-a">australia-southeast1-a</option>
-						    <option value="australia-southeast1-b">australia-southeast1-b</option>
-						    <option value="australia-southeast1-c">australia-southeast1-c</option>
-						    <option value="europe-north1-a">europe-north1-a</option>
-						    <option value="europe-north1-b">europe-north1-b</option>
-						    <option value="europe-north1-c">europe-north1-c</option>
-						    <option value="europe-west1-b">europe-west1-b</option>
-						    <option value="europe-west1-c">europe-west1-c</option>
-						    <option value="europe-west1-d">europe-west1-d</option>
-						    <option value="europe-west2-a">europe-west2-a</option>
-						    <option value="europe-west2-b">europe-west2-b</option>
-						    <option value="europe-west2-c">europe-west2-c</option>
-						    <option value="europe-west3-a">europe-west3-a</option>
-						    <option value="europe-west3-b">europe-west3-b</option>
-						    <option value="europe-west3-c">europe-west3-c</option>
-						    <option value="europe-west4-a">europe-west4-a</option>
-						    <option value="europe-west4-b">europe-west4-b</option>
-						    <option value="europe-west4-c">europe-west4-c</option>
-						    <option value="northamerica-northeast1-a">northamerica-northeast1-a</option>
-						    <option value="northamerica-northeast1-b">northamerica-northeast1-b</option>
-						    <option value="northamerica-northeast1-c">northamerica-northeast1-c</option>
-						    <option value="southamerica-east1-a">southamerica-east1-a</option>
-						    <option value="southamerica-east1-b">southamerica-east1-b</option>
-						    <option value="southamerica-east1-c">southamerica-east1-c</option>
-						    <option value="us-central1-a">us-central1-a</option>
-						    <option value="us-central1-b">us-central1-b</option>
-						    <option value="us-central1-c">us-central1-c</option>
-						    <option value="us-central1-f">us-central1-f</option>
-						    <option value="us-east1-b">us-east1-b</option>
-						    <option value="us-east1-c">us-east1-c</option>
-						    <option value="us-east1-d">us-east1-d</option>
-						    <option value="us-east4-a">us-east4-a</option>
-						    <option value="us-east4-b">us-east4-b</option>
-						    <option value="us-east4-c">us-east4-c</option>
-						    <option value="us-west1-a">us-west1-a</option>
-						    <option value="us-west1-b">us-west1-b</option>
-						    <option value="us-west1-c">us-west1-c</option>
-						    <option value="us-west2-a">us-west2-a</option>
-						    <option value="us-west2-b">us-west2-b</option>
-						    <option value="us-west2-c">us-west2-c</option>
-					  </select>
-					 	<br><br>
-					 	<p class="form-text">Machine Type:</p>
-						<div class="form-check form-check-inline">
-						  <input type="radio" class="form-check-input" id="cstand" name="cluster-radio-standard">
-						  <label class="form-check-label" for="materialInline1">n1-standard-2</label>
-						</div>
-						<div class="form-check form-check-inline" id="cr2">
-						  <input type="radio" class="form-check-input" id="chigh" name="cluster-radio-highmem">
-						  <label class="form-check-label" for="materialInline2">n1-highmem-4</label>
-						</div> 
+						<br><br>
+		 				<p class="form-text">DNS Prefix:</p><input name="cluster-dns" id="cdns" type="text">
 	     			</div>
 
 	     			<div class="form-specs-cont-cluster" id="clus-specs-cont">
-	     				<h2 class="form-header">Google Cluster Configuration</h2>
+	     				<h2 class="form-header">Azure Cluster Configuration</h2>
 						<br><br>
-						<p class="form-text">Authorization Form:</p><input name="cluster-authorization" id="cauth" type="text">
+						<p class="form-text">Macine Type:</p><select name="cluster-machine-type" id="cmachine">
+						    <option value="extra-small">ExtraSmall</option>
+						    <option value="small">Small</option>
+						    <option value="medium">Medium</option>
+						    <option value="large">Large</option>
+						    <option value="extra-large">ExtraLarge</option>
+						    <option value="a5">A5</option>
+						    <option value="a6">A6</option>
+						    <option value="a7">A7</option>
+						    <option value="a8">A8</option>
+						    <option value="a9">A9</option>
+						    <option value="a10">A10</option>
+						    <option value="a11">A11</option>
+						    <option value="standard_a1_v2">Standard_A1_v2</option>
+						    <option value="standard_a2_v2">Standard_A2_v2</option>
+						    <option value="standard_a4_v2">Standard_A4_v2</option>
+						    <option value="standard_a8_v2">Standard_A8_v2</option>
+						    <option value="standard_a2m_v2">Standard_A2m_v2</option>
+						    <option value="standard_a4m_v2">Standard_A4m_v2</option>
+						    <option value="standard_a8m_v2">Standard_A8m_v2</option>
+						    <option value="standard_d1">Standard_D1</option>
+						    <option value="standard_d2">Standard_D2</option>
+						    <option value="standard_d3">Standard_D3</option>
+						    <option value="standard_d4">Standard_D4</option>
+						    <option value="standard_d11">Standard_D11</option>
+						    <option value="standard_d12">Standard_D12</option>
+						    <option value="standard_d13">Standard_D13</option>
+						    <option value="standard_d14">Standard_D14</option>
+						    <option value="standard_d1_v2">Standard_D1_v2</option>
+						    <option value="standard_d2_v2">Standard_D2_v2</option>
+						    <option value="standard_d3_v2">Standard_D3_v2</option>
+						    <option value="standard_d4_v2">Standard_D4_v2</option>
+						    <option value="standard_d5_v2">Standard_D5_v2</option>
+						    <option value="standard_d11_v2">Standard_D11_v2</option>
+						    <option value="standard_d12_v2">Standard_D12_v2</option>
+						    <option value="standard_d13_v2">Standard_D13_v2</option>
+						    <option value="standard_d14_v2">Standard_D14_v2</option>
+						    <option value="standard_d15_v2">Standard_D15_v2</option>
+						    <option value="standard_d2_v3">Standard_D2_v3/option>
+						    <option value="standard_d4_v3">Standard_D4_v3/option>
+						    <option value="standard_d8_v3">Standard_D8_v3/option>
+						    <option value="standard_d16_v3">Standard_D16_v3/option>
+						    <option value="standard_d32_v3">Standard_D32_v3/option>
+						    <option value="standard_d64_v3">Standard_D64_v3/option>
+						    <option value="standard_e2_v3">
+						    Standard_E2_v3/option>
+						    <option value="standard_e4_v3">Standard_E4_v3/option>
+						    <option value="standard_e8_v3">Standard_E8_v3/option>
+						    <option value="standard_e16_v3">Standard_E16_v3/option>
+						    <option value="standard_e32_v3">Standard_E32_v3/option>
+						    <option value="standard_e64_v3">Standard_E64_v3/option>
+						    <option value="standard_g1">Standard_G1</option>
+						    <option value="standard_g2">Standard_G2</option>
+						    <option value="standard_g3">Standard_G3</option>
+						    <option value="standard_g4">Standard_G4</option>
+						    <option value="standard_g5">Standard_G5</option>
+						    <option value="standard_h8">Standard_H8</option>
+						    <option value="standard_h16">Standard_H16</option>
+						    <option value="standard_h8m">Standard_H8m</option>
+						    <option value="standard_h16m">Standard_H16m</option>
+						    <option value="standard_h16r*">Standard_H16r*</option>
+						    <option value="standard_h16mr*">Standard_H16mr*</option>
+					  	</select>
 		 				<br><br>
-		 				<p class="form-text">Service Account Name:</p><input name="cluster-service-account" id="cservacc" type="text">
-		 				<br><br>
-		 				<p class="form-text">FixedIP Namespace:</p><input name="cluster-fixedip" id="cfixed" type="text">
+		 				<p class="form-text">Kubernetes Version:</p><input name="cluster-kubernetes" id="ckub" type="text">
 		 				<br><br>
 		 				<p class="form-text">Number of Nodes:</p><input name="cluster-nodes" id="cnode" type="text">
 		 				<br><br>
-		 				<p class="form-text">Number of Nodes(Classes):</p><input name="cluster-class" id="cclass" type="text">
+		 				<p class="form-text">Number of Nodes (Class):</p><input name="cluster-class" id="cclass" type="text">
 		 				<br><br>
-		 				<p class="form-text">Max Number of Nodes:</p><input name="cluster-max" id="cmax" type="text">
+		 				<p class="form-text">Max Nodes:</p><input name="cluster-max" id="cmax" type="text">
 	     			</div>
+
 					<div class="form-review-cluster" id="review-cluster">
-	     				<h2 class="form-header">Google Cluster Configuration</h2>
+	     				<h2 class="form-header">Azure Cluster Configuration</h2>
 						<br>
-						<p class="form-text-review" id="rcpn">Project Name:</p>
+						<p class="form-text-review">Subscription:</p>
 						<br>
-						<p class="form-text-review">Google Email:</p>
+						<p class="form-text-review">Resource Group:</p>
 						<br>
 						<p class="form-text-review">Cluster Name:</p>
 						<br>
-						<p class="form-text-review">Region:</p>
+						<p class="form-text-review">Location:</p>
 						<br>
-						<p class="form-text-review">Zone:</p>
+						<p class="form-text-review">DNS Prefix:</p>
 						<br>
 						<p class="form-text-review">Machine Type:</p>
 						<br>
-						<p class="form-text-review">Authorization File:</p>
-						<br>
-						<p class="form-text-review">Service Account Name:</p>
-						<br>
-						<p class="form-text-review">FixedIP Namespace:</p>
+						<p class="form-text-review">Kubernetes Version:</p>
 						<br>
 						<p class="form-text-review">Number of Nodes:</p>
 						<br>
 						<p class="form-text-review">Number of Nodes (Class):</p>
 						<br>
 						<p class="form-text-review">Max Nodes:</p>
+						<br>
 						<div class=navigation-buttons>
 							<button type="submit" class="submit-btn" id="submit-cluster">Submit</button>
 						</div>
@@ -516,159 +530,168 @@
 	     		</form>
 	     		<form>
 	     			<div class="form-specs-gpu" id="gpu-specs">
-						<h2 class="form-header">Google Specific Configuration</h2>
+						<h2 class="form-header">Azure Server Configuration</h2>
 						<br><br>
-		 				<p class="form-text">Project Name:</p><input name="gpu-project-name" id="gprojname" type="text">
+		 				<p class="form-text">Azure Image:</p><input name="gpu-azure-image" id="gazureimg" type="text">
+		 				<br><br>
+		 				<p class="form-text">Email:</p><input name="gpu-email" id="gemail" type="text">
+		 				<br><br>
+		 				<p class="form-text">Resource Group:</p><input name="gpu-resource-group" id="ggroup" type="text">
 		 				<br><br>
 		 				<p class="form-text">Server Name:</p><input name="gpu-server-name" id="gservname" type="text">
 		 				<br><br>
-		 				<p class="form-text">Region:</p><select name="gpu-region" id="gregion">
-						    <option value="asia-east1">asia-east1</option>
-						    <option value="asia-east2">asia-east2</option>
-						    <option value="asia-northeast1">asia-northeast1</option>
-						    <option value="asia-south1">asia-south1</option>
-						    <option value="asia-southeast1">asia-southeast1</option>
-						    <option value="australia-southeast1">australia-southeast1</option>
-						    <option value="europe-north1">europe-north1</option>
-						    <option value="europe-west1">europe-west1</option>
-						    <option value="europe-west2">europe-west2</option>
-						    <option value="europe-west3">europe-west3</option>
-						    <option value="europe-west4">europe-west4</option>
-						    <option value="northamerica-northeast1">northamerica-northeast1</option>
-						    <option value="southamerica-east1">southamerica-east1</option>
-						    <option value="us-central1">us-central1</option>
-						    <option value="us-east1">us-east1</option>
-						    <option value="us-east4">us-east4</option>
-						    <option value="us-west1">us-west1</option>
-						    <option value="us-west2">us-west2</option>
-						  </select>
-						<p class="form-text">Zone:</p><select name="gpu-zone" id="gzone">
-						    <option value="asia-east1-a">asia-east1-a</option>
-						    <option value="asia-east1-b">asia-east1-b</option>
-						    <option value="asia-east1-c">asia-east1-c</option>
-						    <option value="asia-east2-a">asia-east2-a</option>
-						    <option value="asia-east2-b">asia-east2-b</option>
-						    <option value="asia-east2-c">asia-east2-c</option>
-						    <option value="asia-northeast1-a">asia-northeast1-a</option>
-						    <option value="asia-northeast1-b">asia-northeast1-b</option>
-						    <option value="asia-northeast1-c">asia-northeast1-c</option>
-						    <option value="asia-south1-a">asia-south1-a</option>
-						    <option value="asia-south1-b">asia-south1-b</option>
-						    <option value="asia-south1-c">asia-south1-c</option>
-						    <option value="asia-southeast1-a">asia-southeast1-a</option>
-						    <option value="asia-southeast1-b">asia-southeast1-b</option>
-						    <option value="asia-southeast1-c">asia-southeast1-c</option>
-						    <option value="australia-southeast1-a">australia-southeast1-a</option>
-						    <option value="australia-southeast1-b">australia-southeast1-b</option>
-						    <option value="australia-southeast1-c">australia-southeast1-c</option>
-						    <option value="europe-north1-a">europe-north1-a</option>
-						    <option value="europe-north1-b">europe-north1-b</option>
-						    <option value="europe-north1-c">europe-north1-c</option>
-						    <option value="europe-west1-b">europe-west1-b</option>
-						    <option value="europe-west1-c">europe-west1-c</option>
-						    <option value="europe-west1-d">europe-west1-d</option>
-						    <option value="europe-west2-a">europe-west2-a</option>
-						    <option value="europe-west2-b">europe-west2-b</option>
-						    <option value="europe-west2-c">europe-west2-c</option>
-						    <option value="europe-west3-a">europe-west3-a</option>
-						    <option value="europe-west3-b">europe-west3-b</option>
-						    <option value="europe-west3-c">europe-west3-c</option>
-						    <option value="europe-west4-a">europe-west4-a</option>
-						    <option value="europe-west4-b">europe-west4-b</option>
-						    <option value="europe-west4-c">europe-west4-c</option>
-						    <option value="northamerica-northeast1-a">northamerica-northeast1-a</option>
-						    <option value="northamerica-northeast1-b">northamerica-northeast1-b</option>
-						    <option value="northamerica-northeast1-c">northamerica-northeast1-c</option>
-						    <option value="southamerica-east1-a">southamerica-east1-a</option>
-						    <option value="southamerica-east1-b">southamerica-east1-b</option>
-						    <option value="southamerica-east1-c">southamerica-east1-c</option>
-						    <option value="us-central1-a">us-central1-a</option>
-						    <option value="us-central1-b">us-central1-b</option>
-						    <option value="us-central1-c">us-central1-c</option>
-						    <option value="us-central1-f">us-central1-f</option>
-						    <option value="us-east1-b">us-east1-b</option>
-						    <option value="us-east1-c">us-east1-c</option>
-						    <option value="us-east1-d">us-east1-d</option>
-						    <option value="us-east4-a">us-east4-a</option>
-						    <option value="us-east4-b">us-east4-b</option>
-						    <option value="us-east4-c">us-east4-c</option>
-						    <option value="us-west1-a">us-west1-a</option>
-						    <option value="us-west1-b">us-west1-b</option>
-						    <option value="us-west1-c">us-west1-c</option>
-						    <option value="us-west2-a">us-west2-a</option>
-						    <option value="us-west2-b">us-west2-b</option>
-						    <option value="us-west2-c">us-west2-c</option>
-						  </select>
-						<br>
-						<p class="form-text">Machine Type:</p>
-						<div class="form-check form-check-inline">
-						  <input type="radio" class="form-check-input" id="gstand" name="gpu-radio-standard">
-						  <label class="form-check-label" for="materialInline1">n1-standard-2</label>
-						</div>
-						<div class="form-check form-check-inline">
-						  <input type="radio" class="form-check-input" id="ghigh" name="gpu-radio-highmem">
-						  <label class="form-check-label" for="materialInline2">n1-highmem-4</label>
-						</div>
-						<br>
-						<p class="form-text">Authorization Form:</p><input name="gpu-authorization" id="gauth" type="text">
+		 				<p class="form-text">Server Image:</p><input name="gpu-server-image" id="gservimg" type="text">
 		 				<br><br>
-		 				<p class="form-text">Boot Size:</p><input name="gpu-boot" id="gboot" type="text">
+		 				<p class="form-text">Server Admin:</p><input name="gpu-server-admin" id="gservad" type="text">
+		 				<p class="form-text">Server Auth:</p><input name="gpu-server-auth" id="gservauth" type="text">
 	     			</div>
 
 	     			<div class="form-specs-cont-gpu" id="gpu-specs-cont">
-	     				<h2 class="form-header">Google Specific Configuration</h2>
-						<br>
-	     				<p class="form-text">Service Account Name:</p><input name="gpu-service-account" id="gservacc" type="text">
+	     				<h2 class="form-header">Azure Server Configuration</h2>
+						<br><br>
+						<p class="form-text">Server Size:</p><select name="gpu-server-size" id="gserversize">
+						    <option value="extra-small">ExtraSmall</option>
+						    <option value="small">Small</option>
+						    <option value="medium">Medium</option>
+						    <option value="large">Large</option>
+						    <option value="extra-large">ExtraLarge</option>
+						    <option value="a5">A5</option>
+						    <option value="a6">A6</option>
+						    <option value="a7">A7</option>
+						    <option value="a8">A8</option>
+						    <option value="a9">A9</option>
+						    <option value="a10">A10</option>
+						    <option value="a11">A11</option>
+						    <option value="standard_a1_v2">Standard_A1_v2</option>
+						    <option value="standard_a2_v2">Standard_A2_v2</option>
+						    <option value="standard_a4_v2">Standard_A4_v2</option>
+						    <option value="standard_a8_v2">Standard_A8_v2</option>
+						    <option value="standard_a2m_v2">Standard_A2m_v2</option>
+						    <option value="standard_a4m_v2">Standard_A4m_v2</option>
+						    <option value="standard_a8m_v2">Standard_A8m_v2</option>
+						    <option value="standard_d1">Standard_D1</option>
+						    <option value="standard_d2">Standard_D2</option>
+						    <option value="standard_d3">Standard_D3</option>
+						    <option value="standard_d4">Standard_D4</option>
+						    <option value="standard_d11">Standard_D11</option>
+						    <option value="standard_d12">Standard_D12</option>
+						    <option value="standard_d13">Standard_D13</option>
+						    <option value="standard_d14">Standard_D14</option>
+						    <option value="standard_d1_v2">Standard_D1_v2</option>
+						    <option value="standard_d2_v2">Standard_D2_v2</option>
+						    <option value="standard_d3_v2">Standard_D3_v2</option>
+						    <option value="standard_d4_v2">Standard_D4_v2</option>
+						    <option value="standard_d5_v2">Standard_D5_v2</option>
+						    <option value="standard_d11_v2">Standard_D11_v2</option>
+						    <option value="standard_d12_v2">Standard_D12_v2</option>
+						    <option value="standard_d13_v2">Standard_D13_v2</option>
+						    <option value="standard_d14_v2">Standard_D14_v2</option>
+						    <option value="standard_d15_v2">Standard_D15_v2</option>
+						    <option value="standard_d2_v3">Standard_D2_v3/option>
+						    <option value="standard_d4_v3">Standard_D4_v3/option>
+						    <option value="standard_d8_v3">Standard_D8_v3/option>
+						    <option value="standard_d16_v3">Standard_D16_v3/option>
+						    <option value="standard_d32_v3">Standard_D32_v3/option>
+						    <option value="standard_d64_v3">Standard_D64_v3/option>
+						    <option value="standard_e2_v3">
+						    Standard_E2_v3/option>
+						    <option value="standard_e4_v3">Standard_E4_v3/option>
+						    <option value="standard_e8_v3">Standard_E8_v3/option>
+						    <option value="standard_e16_v3">Standard_E16_v3/option>
+						    <option value="standard_e32_v3">Standard_E32_v3/option>
+						    <option value="standard_e64_v3">Standard_E64_v3/option>
+						    <option value="standard_g1">Standard_G1</option>
+						    <option value="standard_g2">Standard_G2</option>
+						    <option value="standard_g3">Standard_G3</option>
+						    <option value="standard_g4">Standard_G4</option>
+						    <option value="standard_g5">Standard_G5</option>
+						    <option value="standard_h8">Standard_H8</option>
+						    <option value="standard_h16">Standard_H16</option>
+						    <option value="standard_h8m">Standard_H8m</option>
+						    <option value="standard_h16m">Standard_H16m</option>
+						    <option value="standard_h16r*">Standard_H16r*</option>
+						    <option value="standard_h16mr*">Standard_H16mr*</option>
+					  	</select>
 		 				<br><br>
-		 				<p class="form-text">FixedIP Namespace:</p><input name="gpu-fixedip" id="gfixed" type="text">
+		 				<p class="form-text">Storage Account:</p><input name="gpu-storage-account" id="gstoracc" type="text">
 		 				<br><br>
-						<p class="form-text">Accelorator:</p>
-						<div class="form-check form-check-inline">
-						  <input type="radio" class="form-check-input" id="gp100" name="gpu-radio-p100">
-						  <label class="form-check-label" for="materialInline1">nvidia-tesla-p100</label>
-						</div>
-						<div class="form-check form-check-inline">
-						  <input type="radio" class="form-check-input" id="gk80" name="gpu-radio-k80">
-						  <label class="form-check-label" for="materialInline2">nvidia-tesla-k80</label>
-						</div>
-						<br>
-		 				<p class="form-text">Image Family:</p><input name="gpu-image-family" id="gimgfam" type="text">
+		 				<p class="form-text">Container Name:</p><input name="gpu-container-name" id="gcontname" type="text">
 		 				<br><br>
-		 				<p class="form-text">Image Project:</p><input name="gpu-image-project" id="gimgproj" type="text">
+		 				<p class="form-text">Storage Name:</p><input name="gpu-storage-name" id="gstorname" type="text">
 		 				<br><br>
-		 				<p class="form-text">GPU Count:</p><input name="gpu-count" id="gcount" type="text">
-		 				<p class="form-text">IP Range:</p><input name="gpu-ip-range" id="gip" type="text">
+		 				<p class="form-text">Storage Size:</p><input name="gpu-storage-size" id="gstorsize" type="text">
+		 				<br><br>
+		 				<p class="form-text">Location:</p><select name="gpu-location" id="glocation">
+							<option value="us-central">us-central</option>
+							<option value="us-east">us-east</option>
+							<option value="us-east2">us-east2</option>
+							<option value="us-north-central">us-north-central</option>
+							<option value="us-south-central">us-south-central</option>
+							<option value="us-west-central">us-west-central</option>
+							<option value="us-west">us-west</option>
+							<option value="us-west2">us-west2</option>
+							<option value="europe-north">europe-north</option>
+							<option value="europe-west">europe-west</option>
+							<option value="asia-pacific-east">asia-pacific-east</option>
+							<option value="asia-pacific-southeast">asia-pacific-southeast</option>
+							<option value="japan-east">japan-east</option>
+							<option value="japan-west">japan-west</option>
+							<option value="brazil-south">brazil-south</option>
+							<option value="australia-central">australia-central</option>
+							<option value="australia-central2">australia-central2</option>
+						    <option value="australia-east">australia-east</option>
+						    <option value="australia-southeast">australia-southeast</option>
+							<option value="central-india">central-india</option>
+						    <option value="south-india">south-india</option>
+						    <option value="west-india">west-india</option>
+							<option value="canada-central">canada-central</option>
+						    <option value="canada-east">canada-east</option>
+						    <option value="germany-central">germany-central</option>
+							<option value="germany-northeast">germany-northeast</option>
+						    <option value="united-kingdom-south">united-kingdom-south</option>
+						    <option value="united-kingdom-west">united-kingdom-west</option>
+							<option value="france-central">france-central</option>
+						    <option value="france-south">france-south</option>
+						    <option value="korea-central">korea-central</option>
+							<option value="korea-south">korea-south</option>
+						    <option value="us-dod-central">us-dod-central</option>
+						    <option value="us-dod-east">us-dod-east</option>
+						    <option value="us-gov-iowa">us-gov-iowa</option>
+						    <option value="us-gov-texas">us-gov-texas</option>
+						    <option value="us-gov-virginia">us-gov-virginia</option>
+						</select>
+						<p class="form-text">Server_IP:</p><input name="gpu-serverip" id="gip" type="text">
 	     			</div>
 
 	     			<div class="form-review-gpu" id="review-gpu">
 	     				<h2 class="form-header">Google Specific Configuration</h2>
-						<p class="form-text-review">Project Name:</p>
+						<p class="form-text-review">Azure Image:</p>
+						<br>
+						<p class="form-text-review">Email:</p>
+						<br>
+						<p class="form-text-review">Resource Group:</p>
 						<br>
 						<p class="form-text-review">Server Name:</p>
 						<br>
-						<p class="form-text-review">Region:</p>
+						<p class="form-text-review">Server Image:</p>
 						<br>
-						<p class="form-text-review">Zone:</p>
+						<p class="form-text-review">Server Admin:</p>
 						<br>
-						<p class="form-text-review">Machine Type:</p>
+						<p class="form-text-review">Server Auth:</p>
 						<br>
-						<p class="form-text-review">Boot Size:</p>
+						<p class="form-text-review">Server Size:</p>
 						<br>
-						<p class="form-text-review">Authorization File:</p>
+						<p class="form-text-review">Storage Account:</p>
 						<br>
-						<p class="form-text-review">Service Account Name:</p>
+						<p class="form-text-review">Container Name:</p>
 						<br>
-						<p class="form-text-review">FixedIP Namespace:</p>
+						<p class="form-text-review">Storage Name:</p>
 						<br>
-						<p class="form-text-review">Accelorator:</p>
+						<p class="form-text-review">Storage Size:</p>
 						<br>
-						<p class="form-text-review">Image Family:</p>
+						<p class="form-text-review">Location:</p>
 						<br>
-						<p class="form-text-review">Image Project:</p>
-						<br>
-						<p class="form-text-review">GPU Count:</p>
-						<br>
-						<p class="form-text-review">IP Range:</p>
+						<p class="form-text-review">Server IP:</p>
 						<div class=navigation-buttons>
 							<button type="submit" class="submit-btn" id="submit-gpu">Submit</button>
 						</div>

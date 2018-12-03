@@ -9,37 +9,32 @@ function setupForm(){
     */
 }
 function clearCluster(){
-	document.getElementById("cprojname").value='';
-    document.getElementById("cemail").value='';
+	document.getElementById("csubscrib").value='';
+    document.getElementById("cgroup").value='';
     document.getElementById("cname").value='';
-    document.getElementById("cregion").value='';
-    document.getElementById("czone").value='';
-    document.getElementById("cstand").checked=false;
-    document.getElementById("chigh").checked=false;
-    document.getElementById("cauth").value='';
-    document.getElementById("cservacc").value='';
-    document.getElementById("cfixed").value='';
+    document.getElementById("clocation").value='';
+    document.getElementById("cdns").value='';
+    document.getElementById("cmachine").value='';
+    document.getElementById("ckub").value='';
     document.getElementById("cnode").value='';
     document.getElementById("cclass").value='';
     document.getElementById("cmax").value='';
 }
 
 function clearGPU(){
-	document.getElementById("gprojname").value='';
+	document.getElementById("gazureimg").value='';
+    document.getElementById("gemail").value='';
+    document.getElementById("ggroup").value='';
     document.getElementById("gservname").value='';
-    document.getElementById("gregion").value='';
-    document.getElementById("gzone").value='';
-    document.getElementById("gstand").checked=false;
-    document.getElementById("ghigh").checked=false;
-    document.getElementById("gauth").value='';
-    document.getElementById("gboot").value='';
-    document.getElementById("gservacc").value='';
-    document.getElementById("gfixed").value='';
-    document.getElementById("gp100").checked=false;
-    document.getElementById("gk80").checked=false;
-    document.getElementById("gimgfam").value='';
-    document.getElementById("gimgproj").value='';
-    document.getElementById("gcount").value='';
+    document.getElementById("gservimg").value='';
+    document.getElementById("gservad").value='';
+    document.getElementById("gservauth").value='';
+    document.getElementById("gserversize").value='';
+    document.getElementById("gstoracc").value='';
+    document.getElementById("gcontname").value='';
+    document.getElementById("gstorname").value='';
+    document.getElementById("gstorsize").value='';
+    document.getElementById("glocation").value='';
     document.getElementById("gip").value='';
 }
 
