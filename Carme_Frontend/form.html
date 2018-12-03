@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
 		<link rel="stylesheet" type="text/css" href="CSS/main.css">
-
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  		<script src="Javascript/scripts.js"></script>
 	</head>
-
-
-	<!-- navbar -->  
 	 <nav class="navbar navbar-expand-lg fixed-top ">  
 	 <a class="navbar-brand" href="dashboard.html" class="navbar-left"><img src="Resources/Logo.png" width="180"; height="90px"></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">  
 	 <span class="navbar-toggler-icon"></span>
 	</button>
+	<!--Navbar-->
 	<div class="collapse navbar-collapse " id="navbarSupportedContent"> <ul class="navbar-nav mr-4">
 	 <li class="nav-item">
 	     <a class="nav-link" data-value="home" href="https://carme.ai/">Home</a></li>  
@@ -33,26 +31,59 @@
 	 <a href="#"><img src="Resources/user_icon.jpeg" width="50px"; height="50px";></a>
 	</ul> 
 	</div></nav>
-
 	<div class="help">
-		<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
+	  	<input type="image" src="Resources/Help.png" width="40px"; height="50px"; class="help-button" data-toggle="modal" data-target="#myModal"></button>
 	</div>
+	<div class="modal" id="myModal">
+		<div class="modal-dialog">
+	      	<div class="modal-content">
+		        <div class="modal-header">
+		          	<h4 class="modal-title">Creation Form Help</h4>
+		          	<button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        <div class="modal-body">
+		          	Here you have the option to select either the Kubernetes Cluster or the GPU. To navigate this form, you first make your selection, then click on the buttons to the left to travel through the form. 
+		          	<br><br>
+		          	If you want to stop filling out the Cluster Form or vice versa, just go back to the selection tab and select the other option. It will clear your old form and allow you to navigate your desired form. 
+		          	<br><br>
+		          	After making sure to fill out all of the input fields, you will be able to then submit the form at the review page, which shows what you have inputted.
+		          	<br><br>
+		          	Here are some quick explanations as to what certain parts of the forms refer to:
+		          	<br><br>
+		          	Region and Zone: Selected from the gcloud regions list
+		          	<br>
+		          	Machine Type: Type of Server (n1-standard-2 for cheap alternative/ otherwise go for n1-highmem-4)
+		          	<br>
+		          	Authorization File: Service account authorization (i.e. auth.json)
+		          	<br>
+		          	Number of Nodes: Default number of nodes
+		          	<br>
+		          	Number of Nodes (Class): The number of nodes when class is in session
+		        </div>
+		        <div class="modal-footer">
+		          	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		        </div>
+	      	</div>
+	    </div>
+	</div>
+	<!-- The old form format I used
+
 	<div class="text-center">
 	<div class="btn-group btn-group-lg" role="group" aria-label="form-buttons">
-		<button type="button" class="form-btn">Kubernetes Cluster + Jupyter Server</button>
-		<button type="button" class="form-btn">GPU + Jupyter Server</button>
+		<button type="button" class="form-btn" id=cluster-btn" onclick="showCluster()">Kubernetes Cluster + Jupyter Server</button>
+		<button type="button" class="form-btn" id="gpu-btn" onclick="showGPU()">GPU + Jupyter Server</button>
 	</div></div>
 	<div class="form-wrapper">
-		<div class="cluster-form">
+		<div class="cluster-form" id="cf">
 			<h2 class="form-header">Google Cluster Configuration</h2>
 			<form>
- 				<p class="form-text">Project Name:</p><input name="cluster-project-name" type="text">
+ 				<p class="form-text">Project Name:</p><input name="cluster-project-name" id="cprojname" type="text">
  				<br></br>  
- 				<p class="form-text">Google Email:</p><input name="cluster-email" type="text">
+ 				<p class="form-text">Google Email:</p><input name="cluster-email" id="cemail" type="text">
  				<br></br>  
- 				<p class="form-text">Cluster Name:</p><input name="cluster-name" type="text">
+ 				<p class="form-text">Cluster Name:</p><input name="cluster-name" id="cname" type="text">
  				<br></br>   
- 				<p class="form-text">Region:</p><select name="cluster-region">
+ 				<p class="form-text">Region:</p><select name="cluster-region" id="cregion">
 				    <option value="asia-east1">asia-east1</option>
 				    <option value="asia-east2">asia-east2</option>
 				    <option value="asia-northeast1">asia-northeast1</option>
@@ -72,7 +103,7 @@
 				    <option value="us-west1">us-west1</option>
 				    <option value="us-west2">us-west2</option>
 				  </select>
-				<p class="form-text">Zone:</p><select name="cluster-zone">
+				<p class="form-text">Zone:</p><select name="cluster-zone" id="czone">
 				    <option value="asia-east1-a">asia-east1-a</option>
 				    <option value="asia-east1-b">asia-east1-b</option>
 				    <option value="asia-east1-c">asia-east1-c</option>
@@ -149,44 +180,38 @@
 				  </select>
 				<br></br>
 				<p class="form-text">Machine Type:</p>
-				<!-- Material inline 1 -->
 				<div class="form-check form-check-inline">
-				  <input type="radio" class="form-check-input" id="cluster-radio-standard" name="inlineMaterialRadiosExample">
+				  <input type="radio" class="form-check-input" id="cstand" name="cluster-radio-standard">
 				  <label class="form-check-label" for="materialInline1">n1-standard-2</label>
 				</div>
-
-				<!-- Material inline 2 -->
-				<div class="form-check form-check-inline">
-				  <input type="radio" class="form-check-input" id="cluster-radio-highmem" name="inlineMaterialRadiosExample">
+				<div class="form-check form-check-inline" id="cr2">
+				  <input type="radio" class="form-check-input" id="chigh" name="cluster-radio-highmem">
 				  <label class="form-check-label" for="materialInline2">n1-highmem-4</label>
 				</div>
-
 				<br></br>
-				<p class="form-text">Authorization Form:</p><input name="cluster-authorization" type="text">
+				<p class="form-text">Authorization Form:</p><input name="cluster-authorization" id="cauth" type="text">
  				<br></br>
- 				<p class="form-text">Service Account Name:</p><input name="cluster-service-account" type="text">
+ 				<p class="form-text">Service Account Name:</p><input name="cluster-service-account" id="cservacc" type="text">
  				<br></br>
- 				<p class="form-text">FixeIP Namespace:</p><input name="cluster-fixedip" type="text">
+ 				<p class="form-text">FixedIP Namespace:</p><input name="cluster-fixedip" id="cfixed" type="text">
  				<br></br>
- 				<p class="form-text">Number of Nodes:</p><input name="cluster-nodes" type="text">
+ 				<p class="form-text">Number of Nodes:</p><input name="cluster-nodes" id="cnode" type="text">
  				<br></br>
- 				<p class="form-text">Number of Nodes(Classes):</p><input name="cluster-class" type="text">
+ 				<p class="form-text">Number of Nodes(Classes):</p><input name="cluster-class" id="cclass" type="text">
  				<br></br>
- 				<p class="form-text">Max Number of Nodes:</p><input name="cluster-max" type="text">
+ 				<p class="form-text">Max Number of Nodes:</p><input name="cluster-max" id="cmax" type="text">
  				<br></br>
 				<button type="button" class="form-btn">Submit</button>
 			</form>
-
-
 		</div>
-		<div class="gpu-form">
+		<div class="gpu-form" id="gf">
 		<h2 class="form-header">Google Specific Configuration</h2>
 			<form>
- 				<p class="form-text">Project Name:</p><input name="gpu-project-name" type="text">
+ 				<p class="form-text">Project Name:</p><input name="gpu-project-name" id="gprojname" type="text">
  				<br></br>  
- 				<p class="form-text">Server Name:</p><input name="gpu-server-name" type="text">
+ 				<p class="form-text">Server Name:</p><input name="gpu-server-name" id="gservname" type="text">
  				<br></br>  
- 				<p class="form-text">Region:</p><select name="gpu-region">
+ 				<p class="form-text">Region:</p><select name="gpu-region" id="gregion">
 				    <option value="asia-east1">asia-east1</option>
 				    <option value="asia-east2">asia-east2</option>
 				    <option value="asia-northeast1">asia-northeast1</option>
@@ -206,7 +231,7 @@
 				    <option value="us-west1">us-west1</option>
 				    <option value="us-west2">us-west2</option>
 				  </select>
-				<p class="form-text">Zone:</p><select name="gpu-zone">
+				<p class="form-text">Zone:</p><select name="gpu-zone" id="gzone">
 				    <option value="asia-east1-a">asia-east1-a</option>
 				    <option value="asia-east1-b">asia-east1-b</option>
 				    <option value="asia-east1-c">asia-east1-c</option>
@@ -283,150 +308,377 @@
 				  </select>
 				<br></br>
 				<p class="form-text">Machine Type:</p>
-				<!-- Material inline 1 -->
 				<div class="form-check form-check-inline">
-				  <input type="radio" class="form-check-input" id="gpu-radio-standard" name="inlineMaterialRadiosExample">
+				  <input type="radio" class="form-check-input" id="gstand" name="gpu-radio-standard">
 				  <label class="form-check-label" for="materialInline1">n1-standard-2</label>
 				</div>
-
-				<!-- Material inline 2 -->
 				<div class="form-check form-check-inline">
-				  <input type="radio" class="form-check-input" id="gpu-radio-highmem" name="inlineMaterialRadiosExample">
+				  <input type="radio" class="form-check-input" id="ghigh" name="gpu-radio-highmem">
 				  <label class="form-check-label" for="materialInline2">n1-highmem-4</label>
 				</div>
 				<br></br>
-				<p class="form-text">Authorization Form:</p><input name="gpu-authorization" type="text">
+				<p class="form-text">Authorization Form:</p><input name="gpu-authorization" id="gauth" type="text">
  				<br></br>
- 				<p class="form-text">Boot Size:</p><input name="gpu-boot" type="text">
+ 				<p class="form-text">Boot Size:</p><input name="gpu-boot" id="gboot" type="text">
  				<br></br>
- 				<p class="form-text">Service Account Name:</p><input name="gpu-service-account" type="text">
+ 				<p class="form-text">Service Account Name:</p><input name="gpu-service-account" id="gservacc" type="text">
  				<br></br>
- 				<p class="form-text">FixeIP Namespace:</p><input name="gpu-fixedip" type="text">
+ 				<p class="form-text">FixedIP Namespace:</p><input name="gpu-fixedip" id="gfixed" type="text">
  				<br></br>
 				<p class="form-text">Accelorator:</p>
-				<!-- Material inline 1 -->
 				<div class="form-check form-check-inline">
-				  <input type="radio" class="form-check-input" id="gpu-radio-p100" name="inlineMaterialRadiosExample">
+				  <input type="radio" class="form-check-input" id="gp100" name="gpu-radio-p100">
 				  <label class="form-check-label" for="materialInline1">nvidia-tesla-p100</label>
 				</div>
-
-				<!-- Material inline 2 -->
 				<div class="form-check form-check-inline">
-				  <input type="radio" class="form-check-input" id="gpu-radio-k80" name="inlineMaterialRadiosExample">
+				  <input type="radio" class="form-check-input" id="gk80" name="gpu-radio-k80">
 				  <label class="form-check-label" for="materialInline2">nvidia-tesla-k80</label>
 				</div>
 				<br></br>
-
- 				<p class="form-text">Image Family:</p><input name="gpu-image-family" type="text">
+ 				<p class="form-text">Image Family:</p><input name="gpu-image-family" id="gimgfam" type="text">
  				<br></br>
- 				<p class="form-text">Image Project:</p><input name="gpu-image-project" type="text">
+ 				<p class="form-text">Image Project:</p><input name="gpu-image-project" id="gimgproj" type="text">
  				<br></br>
- 				<p class="form-text">GPU Count:</p><input name="gpu-count" type="text">
+ 				<p class="form-text">GPU Count:</p><input name="gpu-count" id="gcount" type="text">
  				<br></br>
- 				<p class="form-text">IP Range:</p><input name="gpu-ip-range" type="text">
+ 				<p class="form-text">IP Range:</p><input name="gpu-ip-range" id="gip" type="text">
  				<br></br>
 				<button type="button" class="form-btn">Submit</button>
+			</form>
 		</div>
-	</div>
-	<!--<div class="row"> 
+	</div>--->
+	<div class="row"> 
 		<div class="col-lg-4 col-md-4 col-sm-12">
+			<!--Buttons used to navigate the form, the page that shows up depends on which radio button was selected at the beginning-->
 			<div class="form-buttons">
     			<div class="btn-group-vertical">
-			  		<button type="button" class="form-btn">Select Platform/Type</button>
-			  		<button type="button" class="form-btn">Specs</button>
-			  		<button type="button" class="form-btn">Specs Cont.</button>
-			  		<button type="button" class="form-btn">Review</button>
+			  		<button type="button" class="form-btn" onclick="select()">Select Platform/Type</button>
+			  		<button type="button" class="form-btn" onclick="specs()">Specs</button>
+			  		<button type="button" class="form-btn" onclick="specsCont()">Specs Cont.</button>
+			  		<button type="button" class="form-btn" onclick="review()">Review</button>
 				</div>
 			</div>
  		</div>
  		<div class="col-lg-7 col-md-7 col-sm-12 desc">
+ 			<!--There are two separate forms, one for the cluster and one for the gpu. The Selection page with the radio buttons isn't included in either. At the end of each form at the review page is a submit button specific to said form-->
      		<div class="form-container">
-     			<div class="form-select">
-     				<div class="help">
-						<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
-					</div>
-					<form>
-					    <ul class="radio-btns">
-					      <li><input type="radio" name="opinions" id="radio-1" /> <label
-					        for="radio-1">Kubernetes Cluster + Jupyter Server</label></li>
-					      <li><input type="radio" name="opinions" id="radio-2" /> <label
-					        for="radio-2">GPU + Jupyter Server</label></li>
-					    </ul>
-					</form>
+	     			<div class="form-select" id="slct">
+	     				<h2 class="form-header">Please Select Cluster or GPU</h2>
+						<br></br>
+						<input type="radio" name="radionbutton" class="radio-slct" id="select-cluster" onclick="clearCluster()">Kubernetes Cluster + Jupyter Server</button>
+						<br><br>
+						<input type="radio" name="radionbutton" value="GPU + Jupyter Server" class="radio-slct" id="select-gpu" onclick="clearGPU()">GPU + Jupyter Server</button>
+	     			</div>
+	     			<form>
+	     			<div class="form-specs-cluster" id="clus-specs">
+						<h2 class="form-header">Google Cluster Configuration</h2>
+						<br><br>
+		 				<p class="form-text">Project Name:</p><input name="cluster-project-name" id="cprojname" type="text">
+		 				<br><br>
+		 				<p class="form-text">Google Email:</p><input name="cluster-email" id="cemail" type="text">
+		 				<br><br>
+		 				<p class="form-text">Cluster Name:</p><input name="cluster-name" id="cname" type="text">
+		 				<br><br>
+		 				<p class="form-text">Region:</p><select name="cluster-region" id="cregion">
+							<option value="asia-east1">asia-east1</option>
+							<option value="asia-east2">asia-east2</option>
+							<option value="asia-northeast1">asia-northeast1</option>
+							<option value="asia-south1">asia-south1</option>
+							<option value="asia-southeast1">asia-southeast1</option>
+							<option value="australia-southeast1">australia-southeast1</option>
+							<option value="europe-north1">europe-north1</option>
+							<option value="europe-west1">europe-west1</option>
+							<option value="europe-west2">europe-west2</option>
+							<option value="europe-west3">europe-west3</option>
+							<option value="europe-west4">europe-west4</option>
+							<option value="northamerica-northeast1">northamerica-northeast1</option>
+							<option value="southamerica-east1">southamerica-east1</option>
+							<option value="us-central1">us-central1</option>
+							<option value="us-east1">us-east1</option>
+							<option value="us-east4">us-east4</option>
+							<option value="us-west1">us-west1</option>
+						    <option value="us-west2">us-west2</option>
+						</select>
+						<p class="form-text">Zone:</p><select name="cluster-zone" id="czone">
+						    <option value="asia-east1-a">asia-east1-a</option>
+						    <option value="asia-east1-b">asia-east1-b</option>
+						    <option value="asia-east1-c">asia-east1-c</option>
+						    <option value="asia-east2-a">asia-east2-a</option>
+						    <option value="asia-east2-b">asia-east2-b</option>
+						    <option value="asia-east2-c">asia-east2-c</option>
+						    <option value="asia-northeast1-a">asia-northeast1-a</option>
+						    <option value="asia-northeast1-b">asia-northeast1-b</option>
+						    <option value="asia-northeast1-c">asia-northeast1-c</option>
+						    <option value="asia-south1-a">asia-south1-a</option>
+						    <option value="asia-south1-b">asia-south1-b</option>
+						    <option value="asia-south1-c">asia-south1-c</option>
+						    <option value="asia-southeast1-a">asia-southeast1-a</option>
+						    <option value="asia-southeast1-b">asia-southeast1-b</option>
+						    <option value="asia-southeast1-c">asia-southeast1-c</option>
+						    <option value="australia-southeast1-a">australia-southeast1-a</option>
+						    <option value="australia-southeast1-b">australia-southeast1-b</option>
+						    <option value="australia-southeast1-c">australia-southeast1-c</option>
+						    <option value="europe-north1-a">europe-north1-a</option>
+						    <option value="europe-north1-b">europe-north1-b</option>
+						    <option value="europe-north1-c">europe-north1-c</option>
+						    <option value="europe-west1-b">europe-west1-b</option>
+						    <option value="europe-west1-c">europe-west1-c</option>
+						    <option value="europe-west1-d">europe-west1-d</option>
+						    <option value="europe-west2-a">europe-west2-a</option>
+						    <option value="europe-west2-b">europe-west2-b</option>
+						    <option value="europe-west2-c">europe-west2-c</option>
+						    <option value="europe-west3-a">europe-west3-a</option>
+						    <option value="europe-west3-b">europe-west3-b</option>
+						    <option value="europe-west3-c">europe-west3-c</option>
+						    <option value="europe-west4-a">europe-west4-a</option>
+						    <option value="europe-west4-b">europe-west4-b</option>
+						    <option value="europe-west4-c">europe-west4-c</option>
+						    <option value="northamerica-northeast1-a">northamerica-northeast1-a</option>
+						    <option value="northamerica-northeast1-b">northamerica-northeast1-b</option>
+						    <option value="northamerica-northeast1-c">northamerica-northeast1-c</option>
+						    <option value="southamerica-east1-a">southamerica-east1-a</option>
+						    <option value="southamerica-east1-b">southamerica-east1-b</option>
+						    <option value="southamerica-east1-c">southamerica-east1-c</option>
+						    <option value="us-central1-a">us-central1-a</option>
+						    <option value="us-central1-b">us-central1-b</option>
+						    <option value="us-central1-c">us-central1-c</option>
+						    <option value="us-central1-f">us-central1-f</option>
+						    <option value="us-east1-b">us-east1-b</option>
+						    <option value="us-east1-c">us-east1-c</option>
+						    <option value="us-east1-d">us-east1-d</option>
+						    <option value="us-east4-a">us-east4-a</option>
+						    <option value="us-east4-b">us-east4-b</option>
+						    <option value="us-east4-c">us-east4-c</option>
+						    <option value="us-west1-a">us-west1-a</option>
+						    <option value="us-west1-b">us-west1-b</option>
+						    <option value="us-west1-c">us-west1-c</option>
+						    <option value="us-west2-a">us-west2-a</option>
+						    <option value="us-west2-b">us-west2-b</option>
+						    <option value="us-west2-c">us-west2-c</option>
+					  </select>
+					 	<br><br>
+					 	<p class="form-text">Machine Type:</p>
+						<div class="form-check form-check-inline">
+						  <input type="radio" class="form-check-input" id="cstand" name="cluster-radio-standard">
+						  <label class="form-check-label" for="materialInline1">n1-standard-2</label>
+						</div>
+						<div class="form-check form-check-inline" id="cr2">
+						  <input type="radio" class="form-check-input" id="chigh" name="cluster-radio-highmem">
+						  <label class="form-check-label" for="materialInline2">n1-highmem-4</label>
+						</div> 
+	     			</div>
 
+	     			<div class="form-specs-cont-cluster" id="clus-specs-cont">
+	     				<h2 class="form-header">Google Cluster Configuration</h2>
+						<br><br>
+						<p class="form-text">Authorization Form:</p><input name="cluster-authorization" id="cauth" type="text">
+		 				<br><br>
+		 				<p class="form-text">Service Account Name:</p><input name="cluster-service-account" id="cservacc" type="text">
+		 				<br><br>
+		 				<p class="form-text">FixedIP Namespace:</p><input name="cluster-fixedip" id="cfixed" type="text">
+		 				<br><br>
+		 				<p class="form-text">Number of Nodes:</p><input name="cluster-nodes" id="cnode" type="text">
+		 				<br><br>
+		 				<p class="form-text">Number of Nodes(Classes):</p><input name="cluster-class" id="cclass" type="text">
+		 				<br><br>
+		 				<p class="form-text">Max Number of Nodes:</p><input name="cluster-max" id="cmax" type="text">
+	     			</div>
+					<div class="form-review-cluster" id="review-cluster">
+	     				<h2 class="form-header">Google Cluster Configuration</h2>
+						<br>
+						<p class="form-text-review" id="rcpn">Project Name:</p>
+						<br>
+						<p class="form-text-review">Google Email:</p>
+						<br>
+						<p class="form-text-review">Cluster Name:</p>
+						<br>
+						<p class="form-text-review">Region:</p>
+						<br>
+						<p class="form-text-review">Zone:</p>
+						<br>
+						<p class="form-text-review">Machine Type:</p>
+						<br>
+						<p class="form-text-review">Authorization File:</p>
+						<br>
+						<p class="form-text-review">Service Account Name:</p>
+						<br>
+						<p class="form-text-review">FixedIP Namespace:</p>
+						<br>
+						<p class="form-text-review">Number of Nodes:</p>
+						<br>
+						<p class="form-text-review">Number of Nodes (Class):</p>
+						<br>
+						<p class="form-text-review">Max Nodes:</p>
+						<div class=navigation-buttons>
+							<button type="submit" class="submit-btn" id="submit-cluster">Submit</button>
+						</div>
+	     			</div>
+	     		</form>
+	     		<form>
+	     			<div class="form-specs-gpu" id="gpu-specs">
+						<h2 class="form-header">Google Specific Configuration</h2>
+						<br><br>
+		 				<p class="form-text">Project Name:</p><input name="gpu-project-name" id="gprojname" type="text">
+		 				<br><br>
+		 				<p class="form-text">Server Name:</p><input name="gpu-server-name" id="gservname" type="text">
+		 				<br><br>
+		 				<p class="form-text">Region:</p><select name="gpu-region" id="gregion">
+						    <option value="asia-east1">asia-east1</option>
+						    <option value="asia-east2">asia-east2</option>
+						    <option value="asia-northeast1">asia-northeast1</option>
+						    <option value="asia-south1">asia-south1</option>
+						    <option value="asia-southeast1">asia-southeast1</option>
+						    <option value="australia-southeast1">australia-southeast1</option>
+						    <option value="europe-north1">europe-north1</option>
+						    <option value="europe-west1">europe-west1</option>
+						    <option value="europe-west2">europe-west2</option>
+						    <option value="europe-west3">europe-west3</option>
+						    <option value="europe-west4">europe-west4</option>
+						    <option value="northamerica-northeast1">northamerica-northeast1</option>
+						    <option value="southamerica-east1">southamerica-east1</option>
+						    <option value="us-central1">us-central1</option>
+						    <option value="us-east1">us-east1</option>
+						    <option value="us-east4">us-east4</option>
+						    <option value="us-west1">us-west1</option>
+						    <option value="us-west2">us-west2</option>
+						  </select>
+						<p class="form-text">Zone:</p><select name="gpu-zone" id="gzone">
+						    <option value="asia-east1-a">asia-east1-a</option>
+						    <option value="asia-east1-b">asia-east1-b</option>
+						    <option value="asia-east1-c">asia-east1-c</option>
+						    <option value="asia-east2-a">asia-east2-a</option>
+						    <option value="asia-east2-b">asia-east2-b</option>
+						    <option value="asia-east2-c">asia-east2-c</option>
+						    <option value="asia-northeast1-a">asia-northeast1-a</option>
+						    <option value="asia-northeast1-b">asia-northeast1-b</option>
+						    <option value="asia-northeast1-c">asia-northeast1-c</option>
+						    <option value="asia-south1-a">asia-south1-a</option>
+						    <option value="asia-south1-b">asia-south1-b</option>
+						    <option value="asia-south1-c">asia-south1-c</option>
+						    <option value="asia-southeast1-a">asia-southeast1-a</option>
+						    <option value="asia-southeast1-b">asia-southeast1-b</option>
+						    <option value="asia-southeast1-c">asia-southeast1-c</option>
+						    <option value="australia-southeast1-a">australia-southeast1-a</option>
+						    <option value="australia-southeast1-b">australia-southeast1-b</option>
+						    <option value="australia-southeast1-c">australia-southeast1-c</option>
+						    <option value="europe-north1-a">europe-north1-a</option>
+						    <option value="europe-north1-b">europe-north1-b</option>
+						    <option value="europe-north1-c">europe-north1-c</option>
+						    <option value="europe-west1-b">europe-west1-b</option>
+						    <option value="europe-west1-c">europe-west1-c</option>
+						    <option value="europe-west1-d">europe-west1-d</option>
+						    <option value="europe-west2-a">europe-west2-a</option>
+						    <option value="europe-west2-b">europe-west2-b</option>
+						    <option value="europe-west2-c">europe-west2-c</option>
+						    <option value="europe-west3-a">europe-west3-a</option>
+						    <option value="europe-west3-b">europe-west3-b</option>
+						    <option value="europe-west3-c">europe-west3-c</option>
+						    <option value="europe-west4-a">europe-west4-a</option>
+						    <option value="europe-west4-b">europe-west4-b</option>
+						    <option value="europe-west4-c">europe-west4-c</option>
+						    <option value="northamerica-northeast1-a">northamerica-northeast1-a</option>
+						    <option value="northamerica-northeast1-b">northamerica-northeast1-b</option>
+						    <option value="northamerica-northeast1-c">northamerica-northeast1-c</option>
+						    <option value="southamerica-east1-a">southamerica-east1-a</option>
+						    <option value="southamerica-east1-b">southamerica-east1-b</option>
+						    <option value="southamerica-east1-c">southamerica-east1-c</option>
+						    <option value="us-central1-a">us-central1-a</option>
+						    <option value="us-central1-b">us-central1-b</option>
+						    <option value="us-central1-c">us-central1-c</option>
+						    <option value="us-central1-f">us-central1-f</option>
+						    <option value="us-east1-b">us-east1-b</option>
+						    <option value="us-east1-c">us-east1-c</option>
+						    <option value="us-east1-d">us-east1-d</option>
+						    <option value="us-east4-a">us-east4-a</option>
+						    <option value="us-east4-b">us-east4-b</option>
+						    <option value="us-east4-c">us-east4-c</option>
+						    <option value="us-west1-a">us-west1-a</option>
+						    <option value="us-west1-b">us-west1-b</option>
+						    <option value="us-west1-c">us-west1-c</option>
+						    <option value="us-west2-a">us-west2-a</option>
+						    <option value="us-west2-b">us-west2-b</option>
+						    <option value="us-west2-c">us-west2-c</option>
+						  </select>
+						<br>
+						<p class="form-text">Machine Type:</p>
+						<div class="form-check form-check-inline">
+						  <input type="radio" class="form-check-input" id="gstand" name="gpu-radio-standard">
+						  <label class="form-check-label" for="materialInline1">n1-standard-2</label>
+						</div>
+						<div class="form-check form-check-inline">
+						  <input type="radio" class="form-check-input" id="ghigh" name="gpu-radio-highmem">
+						  <label class="form-check-label" for="materialInline2">n1-highmem-4</label>
+						</div>
+						<br>
+						<p class="form-text">Authorization Form:</p><input name="gpu-authorization" id="gauth" type="text">
+		 				<br><br>
+		 				<p class="form-text">Boot Size:</p><input name="gpu-boot" id="gboot" type="text">
+	     			</div>
 
-     			</div>
-     			<div class="form-specs-cluster">
-					<div class="help">
-						<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
-					</div>
+	     			<div class="form-specs-cont-gpu" id="gpu-specs-cont">
+	     				<h2 class="form-header">Google Specific Configuration</h2>
+						<br>
+	     				<p class="form-text">Service Account Name:</p><input name="gpu-service-account" id="gservacc" type="text">
+		 				<br><br>
+		 				<p class="form-text">FixedIP Namespace:</p><input name="gpu-fixedip" id="gfixed" type="text">
+		 				<br><br>
+						<p class="form-text">Accelorator:</p>
+						<div class="form-check form-check-inline">
+						  <input type="radio" class="form-check-input" id="gp100" name="gpu-radio-p100">
+						  <label class="form-check-label" for="materialInline1">nvidia-tesla-p100</label>
+						</div>
+						<div class="form-check form-check-inline">
+						  <input type="radio" class="form-check-input" id="gk80" name="gpu-radio-k80">
+						  <label class="form-check-label" for="materialInline2">nvidia-tesla-k80</label>
+						</div>
+						<br>
+		 				<p class="form-text">Image Family:</p><input name="gpu-image-family" id="gimgfam" type="text">
+		 				<br><br>
+		 				<p class="form-text">Image Project:</p><input name="gpu-image-project" id="gimgproj" type="text">
+		 				<br><br>
+		 				<p class="form-text">GPU Count:</p><input name="gpu-count" id="gcount" type="text">
+		 				<p class="form-text">IP Range:</p><input name="gpu-ip-range" id="gip" type="text">
+	     			</div>
 
-
-
-
-
-
-     			</div>
-     			<div class="form-specs-gpu">
-					<div class="help">
-						<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
-					</div>
-
-
-
-
-
-
-     			</div>
-     			<div class="form-specs-cont-cluster">
-     				<div class="help">
-						<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
-					</div>
-
-
-
-
-     			</div>
-     			<div class="form-specs-cont-gpu">
-     				<div class="help">
-						<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
-					</div>
-
-
-
-
-
-     			</div>
-     			<div class="form-review-cluster">
-     				<div class="help">
-						<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
-					</div>
-
-
-
-
-
-     			</div>
-     			<div class="form-review-gpu">
-     				<div class="help">
-						<a class = help-button><img src="Resources/Help.png" width="40px"; height="40px";></a>
-					</div>
-
-
-
-
-
-     			</div>
+	     			<div class="form-review-gpu" id="review-gpu">
+	     				<h2 class="form-header">Google Specific Configuration</h2>
+						<p class="form-text-review">Project Name:</p>
+						<br>
+						<p class="form-text-review">Server Name:</p>
+						<br>
+						<p class="form-text-review">Region:</p>
+						<br>
+						<p class="form-text-review">Zone:</p>
+						<br>
+						<p class="form-text-review">Machine Type:</p>
+						<br>
+						<p class="form-text-review">Boot Size:</p>
+						<br>
+						<p class="form-text-review">Authorization File:</p>
+						<br>
+						<p class="form-text-review">Service Account Name:</p>
+						<br>
+						<p class="form-text-review">FixedIP Namespace:</p>
+						<br>
+						<p class="form-text-review">Accelorator:</p>
+						<br>
+						<p class="form-text-review">Image Family:</p>
+						<br>
+						<p class="form-text-review">Image Project:</p>
+						<br>
+						<p class="form-text-review">GPU Count:</p>
+						<br>
+						<p class="form-text-review">IP Range:</p>
+						<div class=navigation-buttons>
+							<button type="submit" class="submit-btn" id="submit-gpu">Submit</button>
+						</div>
+	     			</div>
+	     		</form>
 		    </div>
 		</div>
 	</div>
---->
-
-
-
-
-
-
+	<!--Clears the form, wouldn't work when in the javascript file-->
+	<script>window.onload = setupForm();</script>
 	<footer class="footer">
 		<div class="footer-buttons">
 			<ul class="footer-li">
