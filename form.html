@@ -1,0 +1,581 @@
+{% extends "app/newlayout.html" %}
+
+{% block content %}
+{% load staticfiles %}
+	<div class="vert-space"></div>
+	<row>
+		<div class="container h-100">
+		  	<div class="row h-100 justify-content-center align-items-center">
+		  		<div class="fwrap">
+		  			<div class="container">
+				    	<div class="form-start" id="select-page">
+				            <h3 class="text-center">Make a Selection</h3>
+				            <hr>
+							<div class="row align-items-center">
+					            <div class="col desc-select">
+								    <p class="text-center">
+								       	To begin, select either the "Create Form" or "Azure Chatbot" buttons to start the creation process.
+							        	<br><br>
+							        	If you are aware of the specifications you desire and
+							        	are looking for the most direct and time-efficient
+							        	option, the "Create Form" page is recommended.
+							        	<br><br>
+							        	If you are unsure of what exactly you are looking
+							        	for or are confused on how to go about creating your
+							        	desire configurations, the "Azure Chatbot" will be able to guide you through the process.
+								    </p>
+								    <br>
+								    <img src="Resources/azure.png" height="130px" width="130px" alt="azure logo"/>
+								    <div class="form-entry-buttons">
+										<button type="button" class="btn" id="select-cluster" onclick="clusterSpecs()">Cluster + Jupyter Server</button>
+										<div class="divider"></div>
+										<button type="button" class="btn" id="select-gpu" onclick="gpuSpecs()">GPU + Jupyter Server</button>
+									</div>
+							    </div>
+							</div>
+						</div>
+						<form class="form-horizontal" role="form">
+							<div class="form-cluster-specs" id="cluster-specs">
+					            <h3 class="text-center">Azure Cluster Specifications</h3>
+					            <hr>
+								<div class="row align-items-center">
+						            <div class="col desc-specs">
+									    <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Subscription:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="cluster-subscription" class="form-control" id="csubscrib"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+									    <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Resource Group:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="cluster-resource-group" class="form-control" id="cgroup"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Cluster Name:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="cluster-name" class="form-control" id="cname"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">DNS Prefix:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="cluster-dns" class="form-control" id="cdns"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="row" style="margin-bottom: 10px;">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="cluster-location">Location + Machine Type:</label>
+								            </div>
+								            <div class="col-md-6">
+							                        <select name="cluster-location" id="clocation" style="width: 10rem; margin-top: 10px; margin-left: 40px; display: inline-block;" placeholder="Location">
+							                        	<option value="" selected disabled hidden>Location</option>
+														<option value="us-central">us-central</option>
+														<option value="us-east">us-east</option>
+														<option value="us-east2">us-east2</option>
+														<option value="us-north-central">us-north-central</option>
+														<option value="us-south-central">us-south-central</option>
+														<option value="us-west-central">us-west-central</option>
+														<option value="us-west">us-west</option>
+														<option value="us-west2">us-west2</option>
+														<option value="europe-north">europe-north</option>
+														<option value="europe-west">europe-west</option>
+														<option value="asia-pacific-east">asia-pacific-east</option>
+														<option value="asia-pacific-southeast">asia-pacific-southeast</option>
+														<option value="japan-east">japan-east</option>
+														<option value="japan-west">japan-west</option>
+														<option value="brazil-south">brazil-south</option>
+														<option value="australia-central">australia-central</option>
+														<option value="australia-central2">australia-central2</option>
+													    <option value="australia-east">australia-east</option>
+													    <option value="australia-southeast">australia-southeast</option>
+														<option value="central-india">central-india</option>
+													    <option value="south-india">south-india</option>
+													    <option value="west-india">west-india</option>
+														<option value="canada-central">canada-central</option>
+													    <option value="canada-east">canada-east</option>
+													    <option value="germany-central">germany-central</option>
+														<option value="germany-northeast">germany-northeast</option>
+													    <option value="united-kingdom-south">united-kingdom-south</option>
+													    <option value="united-kingdom-west">united-kingdom-west</option>
+														<option value="france-central">france-central</option>
+													    <option value="france-south">france-south</option>
+													    <option value="korea-central">korea-central</option>
+														<option value="korea-south">korea-south</option>
+													    <option value="us-dod-central">us-dod-central</option>
+													    <option value="us-dod-east">us-dod-east</option>
+													    <option value="us-gov-iowa">us-gov-iowa</option>
+													    <option value="us-gov-texas">us-gov-texas</option>
+													    <option value="us-gov-virginia">us-gov-virginia</option>
+													</select>
+							                    	<select name="cluster-machine-type" id="cmachine" style="width: 10rem; margin-top: 10px; margin-left: 53px; display: inline-block;" placeholder="Machine Type">
+							                    		<option value="" selected disabled hidden>Machine Type</option>
+													    <option value="extra-small">ExtraSmall</option>
+													    <option value="small">Small</option>
+													    <option value="medium">Medium</option>
+													    <option value="large">Large</option>
+													    <option value="extra-large">ExtraLarge</option>
+													    <option value="a5">A5</option>
+													    <option value="a6">A6</option>
+													    <option value="a7">A7</option>
+													    <option value="a8">A8</option>
+													    <option value="a9">A9</option>
+													    <option value="a10">A10</option>
+													    <option value="a11">A11</option>
+													    <option value="standard_a1_v2">Standard_A1_v2</option>
+													    <option value="standard_a2_v2">Standard_A2_v2</option>
+													    <option value="standard_a4_v2">Standard_A4_v2</option>
+													    <option value="standard_a8_v2">Standard_A8_v2</option>
+													    <option value="standard_a2m_v2">Standard_A2m_v2</option>
+													    <option value="standard_a4m_v2">Standard_A4m_v2</option>
+													    <option value="standard_a8m_v2">Standard_A8m_v2</option>
+													    <option value="standard_d1">Standard_D1</option>
+													    <option value="standard_d2">Standard_D2</option>
+													    <option value="standard_d3">Standard_D3</option>
+													    <option value="standard_d4">Standard_D4</option>
+													    <option value="standard_d11">Standard_D11</option>
+													    <option value="standard_d12">Standard_D12</option>
+													    <option value="standard_d13">Standard_D13</option>
+													    <option value="standard_d14">Standard_D14</option>
+													    <option value="standard_d1_v2">Standard_D1_v2</option>
+													    <option value="standard_d2_v2">Standard_D2_v2</option>
+													    <option value="standard_d3_v2">Standard_D3_v2</option>
+													    <option value="standard_d4_v2">Standard_D4_v2</option>
+													    <option value="standard_d5_v2">Standard_D5_v2</option>
+													    <option value="standard_d11_v2">Standard_D11_v2</option>
+													    <option value="standard_d12_v2">Standard_D12_v2</option>
+													    <option value="standard_d13_v2">Standard_D13_v2</option>
+													    <option value="standard_d14_v2">Standard_D14_v2</option>
+													    <option value="standard_d15_v2">Standard_D15_v2</option>
+													    <option value="standard_d2_v3">Standard_D2_v3</option>
+													    <option value="standard_d4_v3">Standard_D4_v3</option>
+													    <option value="standard_d8_v3">Standard_D8_v3</option>
+													    <option value="standard_d16_v3">Standard_D16_v3</option>
+													    <option value="standard_d32_v3">Standard_D32_v3</option>
+													    <option value="standard_d64_v3">Standard_D64_v3</option>
+													    <option value="standard_e2_v3">Standard_E2_v3</option>
+													    <option value="standard_e4_v3">Standard_E4_v3</option>
+													    <option value="standard_e8_v3">Standard_E8_v3</option>
+													    <option value="standard_e16_v3">Standard_E16_v3</option>
+													    <option value="standard_e32_v3">Standard_E32_v3</option>
+													    <option value="standard_e64_v3">Standard_E64_v3</option>
+													    <option value="standard_g1">Standard_G1</option>
+													    <option value="standard_g2">Standard_G2</option>
+													    <option value="standard_g3">Standard_G3</option>
+													    <option value="standard_g4">Standard_G4</option>
+													    <option value="standard_g5">Standard_G5</option>
+													    <option value="standard_h8">Standard_H8</option>
+													    <option value="standard_h16">Standard_H16</option>
+													    <option value="standard_h8m">Standard_H8m</option>
+													    <option value="standard_h16m">Standard_H16m</option>
+													    <option value="standard_h16r*">Standard_H16r*</option>
+													    <option value="standard_h16mr*">Standard_H16mr*</option>
+												  	</select>
+								            </div> 
+								        </div>
+								        <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Kubernetes Version:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="cluster-kubernetes" class="form-control" id="ckub"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+									    <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Number of Nodes:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="cluster-nodes" class="form-control" id="cnode"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Number of Nodes (Class):</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="cluster-class" class="form-control" id="cclass"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Max Nodes:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="cluster-max" class="form-control" id="cmax"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <br>
+										<button type="button" class="prev-btn" id="cluster-specs-return-select" onclick="returnCSelect()">Previous</button>
+										<button type="submit" class="s-btn" id="submit-cluster">Submit</button>
+								    </div>
+								</div>
+							</div>
+						</form>
+
+						<form class="form-horizontal" role="form">
+							<div class="form-gpu-specs" id="gpu-specs">
+					            <h3 class="text-center">Azure Server Specifications</h3>
+					            <hr style="color:redS">
+								<div class="row align-items-center">
+						            <div class="col desc-specs">
+									    <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Azure Image:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="gpu-azure-image" class="form-control" id="gazureimg"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Email:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="gpu-email" class="form-control" id="gemail"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+									    <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Resource Group:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="gpu-resource-group" class="form-control" id="ggroup"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Server Name:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="gpu-server-name" class="form-control" id="gservname"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Server Image:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="gpu-server-image" class="form-control" id="gservimg"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Server Admin:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="gpu-server-admin" class="form-control" id="gservad"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Server Auth:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="gpu-server-auth" class="form-control" id="gservauth"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="row" style="margin-bottom: 10px;">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="gpu-location">Location + Server Size:</label>
+								            </div>
+								            <div class="col-md-6">
+							                        <select name="gpu-location" id="glocation" style="width: 10rem; margin-top: 10px; margin-left: 40px; display: inline-block;" placeholder="Location">
+							                        	<option value="" selected disabled hidden>Location</option>
+														<option value="us-central">us-central</option>
+														<option value="us-east">us-east</option>
+														<option value="us-east2">us-east2</option>
+														<option value="us-north-central">us-north-central</option>
+														<option value="us-south-central">us-south-central</option>
+														<option value="us-west-central">us-west-central</option>
+														<option value="us-west">us-west</option>
+														<option value="us-west2">us-west2</option>
+														<option value="europe-north">europe-north</option>
+														<option value="europe-west">europe-west</option>
+														<option value="asia-pacific-east">asia-pacific-east</option>
+														<option value="asia-pacific-southeast">asia-pacific-southeast</option>
+														<option value="japan-east">japan-east</option>
+														<option value="japan-west">japan-west</option>
+														<option value="brazil-south">brazil-south</option>
+														<option value="australia-central">australia-central</option>
+														<option value="australia-central2">australia-central2</option>
+													    <option value="australia-east">australia-east</option>
+													    <option value="australia-southeast">australia-southeast</option>
+														<option value="central-india">central-india</option>
+													    <option value="south-india">south-india</option>
+													    <option value="west-india">west-india</option>
+														<option value="canada-central">canada-central</option>
+													    <option value="canada-east">canada-east</option>
+													    <option value="germany-central">germany-central</option>
+														<option value="germany-northeast">germany-northeast</option>
+													    <option value="united-kingdom-south">united-kingdom-south</option>
+													    <option value="united-kingdom-west">united-kingdom-west</option>
+														<option value="france-central">france-central</option>
+													    <option value="france-south">france-south</option>
+													    <option value="korea-central">korea-central</option>
+														<option value="korea-south">korea-south</option>
+													    <option value="us-dod-central">us-dod-central</option>
+													    <option value="us-dod-east">us-dod-east</option>
+													    <option value="us-gov-iowa">us-gov-iowa</option>
+													    <option value="us-gov-texas">us-gov-texas</option>
+													    <option value="us-gov-virginia">us-gov-virginia</option>
+													</select>
+							                    	<select name="gpu-server-size" id="gserversize" style="width: 10rem; margin-top: 10px; margin-left: 53px; display: inline-block;" placeholder="Server Size">
+							                    		<option value="" selected disabled hidden>Server Size</option>
+													    <option value="extra-small">ExtraSmall</option>
+													    <option value="small">Small</option>
+													    <option value="medium">Medium</option>
+													    <option value="large">Large</option>
+													    <option value="extra-large">ExtraLarge</option>
+													    <option value="a5">A5</option>
+													    <option value="a6">A6</option>
+													    <option value="a7">A7</option>
+													    <option value="a8">A8</option>
+													    <option value="a9">A9</option>
+													    <option value="a10">A10</option>
+													    <option value="a11">A11</option>
+													    <option value="standard_a1_v2">Standard_A1_v2</option>
+													    <option value="standard_a2_v2">Standard_A2_v2</option>
+													    <option value="standard_a4_v2">Standard_A4_v2</option>
+													    <option value="standard_a8_v2">Standard_A8_v2</option>
+													    <option value="standard_a2m_v2">Standard_A2m_v2</option>
+													    <option value="standard_a4m_v2">Standard_A4m_v2</option>
+													    <option value="standard_a8m_v2">Standard_A8m_v2</option>
+													    <option value="standard_d1">Standard_D1</option>
+													    <option value="standard_d2">Standard_D2</option>
+													    <option value="standard_d3">Standard_D3</option>
+													    <option value="standard_d4">Standard_D4</option>
+													    <option value="standard_d11">Standard_D11</option>
+													    <option value="standard_d12">Standard_D12</option>
+													    <option value="standard_d13">Standard_D13</option>
+													    <option value="standard_d14">Standard_D14</option>
+													    <option value="standard_d1_v2">Standard_D1_v2</option>
+													    <option value="standard_d2_v2">Standard_D2_v2</option>
+													    <option value="standard_d3_v2">Standard_D3_v2</option>
+													    <option value="standard_d4_v2">Standard_D4_v2</option>
+													    <option value="standard_d5_v2">Standard_D5_v2</option>
+													    <option value="standard_d11_v2">Standard_D11_v2</option>
+													    <option value="standard_d12_v2">Standard_D12_v2</option>
+													    <option value="standard_d13_v2">Standard_D13_v2</option>
+													    <option value="standard_d14_v2">Standard_D14_v2</option>
+													    <option value="standard_d15_v2">Standard_D15_v2</option>
+													    <option value="standard_d2_v3">Standard_D2_v3</option>
+													    <option value="standard_d4_v3">Standard_D4_v3</option>
+													    <option value="standard_d8_v3">Standard_D8_v3</option>
+													    <option value="standard_d16_v3">Standard_D16_v3</option>
+													    <option value="standard_d32_v3">Standard_D32_v3</option>
+													    <option value="standard_d64_v3">Standard_D64_v3</option>
+													    <option value="standard_e2_v3">Standard_E2_v3</option>
+													    <option value="standard_e4_v3">Standard_E4_v3</option>
+													    <option value="standard_e8_v3">Standard_E8_v3</option>
+													    <option value="standard_e16_v3">Standard_E16_v3</option>
+													    <option value="standard_e32_v3">Standard_E32_v3</option>
+													    <option value="standard_e64_v3">Standard_E64_v3</option>
+													    <option value="standard_g1">Standard_G1</option>
+													    <option value="standard_g2">Standard_G2</option>
+													    <option value="standard_g3">Standard_G3</option>
+													    <option value="standard_g4">Standard_G4</option>
+													    <option value="standard_g5">Standard_G5</option>
+													    <option value="standard_h8">Standard_H8</option>
+													    <option value="standard_h16">Standard_H16</option>
+													    <option value="standard_h8m">Standard_H8m</option>
+													    <option value="standard_h16m">Standard_H16m</option>
+													    <option value="standard_h16r*">Standard_H16r*</option>
+													    <option value="standard_h16mr*">Standard_H16mr*</option>
+												  	</select>
+								            	</div> 
+								        	</div>
+								        <div class="space4btns"></div>
+										<button type="button" class="prev-btn" id="gpu-specs-return-select" onclick="returnGSelect()">Previous</button>
+										<button type="button" class="next-btn" id="to-gpu-specs-cont" onclick="gpuSpecsCont()">Next</button>
+									</div>
+								</div>
+							</div>
+							<div class="form-gpu-specs-cont" id="gpu-specs-cont">
+					            <h3 class="text-center">Azure Server Specifications</h3>
+					            <hr>
+								<div class="row align-items-center">
+						            <div class="col desc-specs">
+									    <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Storage Account:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="gpu-storage-account" class="form-control" id="gstoracc"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Container Name:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="gpu-container-name" class="form-control" id="gcontname"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+									    <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Storage Name:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="gpu-storage-name" class="form-control" id="gstorname"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Storage Size:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="gpu-storage-szie" class="form-control" id="gstorsize"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="row">
+								            <div class="col-md-3 field-label-responsive">
+								                <label for="name">Server IP:</label>
+								            </div>
+								            <div class="col-md-6">
+								                <div class="form-group">
+								                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+								                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+								                        <input type="text" name="gpu-serverip" class="form-control" id="gip"
+								                               placeholder="">
+								                    </div>
+								                </div>
+								            </div> 
+								        </div>
+								        <div class="space4btnscont"></div>
+										<button type="button" class="prev-btn" id="gpu-specs-return-specs" onclick="returnGSpecs()">Previous</button>
+										<button type="submit" class="s-btn" id="submit-cluster">Submit</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</row>
+	
+{% endblock %}

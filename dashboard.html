@@ -1,0 +1,31 @@
+{% extends "app/newlayout.html" %}
+
+{% block content %}
+{% load staticfiles %}
+	<div class="row">
+		<div class="dashboard-banner">
+		    <div class="col-lg-4 col-md-4 col-sm-12 images">
+			    <img src="Resources/azure.png" alt="azure logo"/> 
+		    </div>
+		    <div class="col-lg-8 col-md-8 col-sm-12 desc">
+		    	<h3>Welcome to the User Dashboard!</h3><br>
+			    <p>
+			       To begin, select either the "Create Form" or "Azure Chatbot" buttons to start the creation process.
+		        	<br><br>
+		        	If you are aware of the specifications you desire and
+		        	are looking for the most direct and time-efficient
+		        	option, the "Create Form" page is recommended.
+		        	<br><br>
+		        	If you are unsure of what exactly you are looking
+		        	for or are confused on how to go about creating your
+		        	desire configurations, the "Azure Chatbot" will be able to guide you through the process.
+			    </p>
+			    <div class="entry-buttons">
+					<a class="btn" data-value="create" href="form.html">Create Form</a>
+					<div class="divider"></div>
+					<a class="btn" data-value="chatbot" href="chatbot.html">Azure Chatbot</a>
+				</div>
+		    </div>
+		</div>
+	</div>
+{% endblock %}

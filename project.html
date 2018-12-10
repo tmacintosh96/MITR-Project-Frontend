@@ -1,0 +1,36 @@
+{% extends "app/newlayout.html" %}
+
+{% block content %}
+{% load staticfiles %}
+	<div class="vert-space"></div>
+	<row>
+		<div class="container h-100">
+		  	<div class="row h-100 justify-content-center align-items-center">
+		  		<div class="fwrap">
+		  			<div class="container">
+				        <h6 class="text-center" style="font-style:italic; color: red">Bookmark this page to access your project. TREAT THIS URL AS A PASSWORD.</h6>
+				        <h4 class="text-center">Current Status</h4>
+				        <p style="text-align: center">{{project.status|linebreaksbr}}</p>
+				        <div class="entry-buttons">
+							<a class="project-btn" data-value="start" href="{% url 'projectSetup' project.projectid %}">Start</a>
+							<div class="divider"></div>
+							<a class="project-btn" data-value="delete" href="{% url 'projectDelete' project.projectid %}">Delete</a>
+						</div>
+				        <hr>
+				        <h4 class="text-center">Cluster Config</h4>
+				        <p style="text-align: center; font-size: 1em">{{project.clusterConfig|linebreaksbr}}</p>
+				        <h4 class="text-center">JupyterHub Config</h4>
+				        <p style="text-align: center; font-size: 1em">{{project.jupyterHubConfig|linebreaksbr}}</p>
+				        <h4 class="text-center">Last Command Log</h4>
+				        <p style="text-align: center; font-size: 1em">{{project.lastLog|linebreaksbr}}</p>
+		  			</div>
+		  		</div>
+		  	</div>
+		</div>
+	</row>
+	<script type="text/javascript">
+		setTimeout(function(){
+			location = ''
+		},30000)
+	</script>
+{% endblock %}
